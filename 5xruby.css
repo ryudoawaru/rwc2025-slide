@@ -1,0 +1,689 @@
+/*
+ * @theme 5xruby
+ * @author 5xRuby
+ * @description Marp theme inspired by 5xRuby corporate website
+ * @size 16:9 1280px 720px
+ */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700&display=swap');
+
+/* ===== Root Variables ===== */
+:root {
+  /* 5xRuby Color Palette */
+  --color-primary: #d32c25;
+  --color-gray-850: #272727;
+  --color-gray-500: #8b8b8b;
+  --color-gray-450: #808080;
+  --color-gray-375: #a8a8a8;
+  --color-gray-350: #c0c0c0;
+  --color-gray-325: #d2d2d2;
+  --color-gray-250: #dedede;
+  --color-gray-150: #efefef;
+
+  /* Theme Colors */
+  --color-background: #ffffff;
+  --color-foreground: #272727;
+  --color-highlight: #d32c25;
+  --color-dimmed: #8b8b8b;
+}
+
+/* ===== Base Section Styles ===== */
+section {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: "Noto Sans", "Noto Sans CJK JP", "Segoe UI", "PingFang TC", "Microsoft YaHei", sans-serif;
+  font-size: 32px;
+  line-height: 1.6;
+  padding: 70px 70px 130px 70px; /* Extra bottom padding: 55px footer + 75px gap = 130px */
+  justify-content: flex-start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Reserve ::before for future use if needed */
+section::before {
+  content: none;
+}
+
+/* ===== Headers ===== */
+/* Using em for font-sizes so they scale with parent font-size */
+h1 {
+  color: var(--color-primary);
+  font-size: 2.125em; /* 68px / 32px = 2.125em */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  border-bottom: 4px solid var(--color-primary);
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  color: var(--color-primary);
+  font-size: 1.625em; /* 52px / 32px = 1.625em */
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0.8em 0 0.5em 0;
+}
+
+h3 {
+  color: var(--color-gray-850);
+  font-size: 1.3125em; /* 42px / 32px = 1.3125em */
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0.6em 0 0.4em 0;
+}
+
+h4 {
+  color: var(--color-gray-850);
+  font-size: 1.125em; /* 36px / 32px = 1.125em */
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0.5em 0 0.3em 0;
+}
+
+h5 {
+  color: var(--color-gray-500);
+  font-size: 1em; /* 32px / 32px = 1em */
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0.4em 0 0.3em 0;
+}
+
+h6 {
+  color: var(--color-gray-500);
+  font-size: 0.875em; /* 28px / 32px = 0.875em */
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0.3em 0 0.2em 0;
+}
+
+/* ===== Text Elements ===== */
+p {
+  margin: 0.5em 0;
+}
+
+strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+em {
+  color: var(--color-gray-500);
+  font-style: italic;
+}
+
+/* ===== Links ===== */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-primary);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-gray-850);
+  border-bottom-color: var(--color-gray-850);
+}
+
+/* ===== Lists ===== */
+ul, ol {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+ul li {
+  list-style-type: none;
+  position: relative;
+  margin: 0.4em 0;
+}
+
+ul li::before {
+  content: "■";
+  color: var(--color-primary);
+  font-size: 0.7em;
+  position: absolute;
+  left: -2.5em;
+  top: 0.15em;
+}
+
+ol {
+  counter-reset: list-counter;
+}
+
+ol li {
+  counter-increment: list-counter;
+  position: relative;
+}
+
+ol li::marker {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ===== Code Blocks ===== */
+code {
+  background-color: var(--color-gray-150);
+  color: var(--color-gray-850);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: "Monaco", "Consolas", "Courier New", monospace;
+  font-size: 0.85em;
+}
+
+pre {
+  background-color: var(--color-gray-850);
+  color: var(--color-gray-150);
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1em 0;
+  line-height: 1.5;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.75em;
+  line-height: 1.5;
+}
+
+/* ===== Syntax Highlighting (Marp uses Shiki/Highlight.js tokens) ===== */
+
+/* Comments */
+pre code .hljs-comment,
+pre code .hljs-quote {
+  color: #8b8b8b;
+  font-style: italic;
+}
+
+/* Keywords */
+pre code .hljs-keyword,
+pre code .hljs-selector-tag,
+pre code .hljs-subst {
+  color: #d32c25;
+  font-weight: 600;
+}
+
+/* Strings */
+pre code .hljs-string,
+pre code .hljs-title,
+pre code .hljs-section,
+pre code .hljs-attribute,
+pre code .hljs-literal,
+pre code .hljs-template-tag,
+pre code .hljs-template-variable,
+pre code .hljs-type {
+  color: #50a14f;
+}
+
+/* Numbers */
+pre code .hljs-number {
+  color: #c18401;
+}
+
+/* Functions */
+pre code .hljs-function,
+pre code .hljs-title.function_,
+pre code .hljs-params {
+  color: #4078f2;
+}
+
+/* Classes & Types */
+pre code .hljs-class,
+pre code .hljs-title.class_,
+pre code .hljs-built_in {
+  color: #a626a4;
+}
+
+/* Variables & Parameters */
+pre code .hljs-variable,
+pre code .hljs-variable.language_,
+pre code .hljs-variable.constant_ {
+  color: #e45649;
+}
+
+/* Operators & Punctuation */
+pre code .hljs-operator,
+pre code .hljs-punctuation {
+  color: #dedede;
+}
+
+/* Meta & Annotations */
+pre code .hljs-meta,
+pre code .hljs-meta .hljs-keyword {
+  color: #986801;
+}
+
+/* Tags (HTML/XML) */
+pre code .hljs-tag,
+pre code .hljs-name {
+  color: #d32c25;
+}
+
+/* Attributes */
+pre code .hljs-attr {
+  color: #c18401;
+}
+
+/* Symbols & Constants */
+pre code .hljs-symbol,
+pre code .hljs-bullet,
+pre code .hljs-link {
+  color: #d32c25;
+}
+
+/* Regex */
+pre code .hljs-regexp {
+  color: #50a14f;
+}
+
+/* Additions (diff) */
+pre code .hljs-addition {
+  color: #50a14f;
+  background-color: rgba(80, 161, 79, 0.1);
+}
+
+/* Deletions (diff) */
+pre code .hljs-deletion {
+  color: #e45649;
+  background-color: rgba(228, 86, 73, 0.1);
+}
+
+/* Emphasis */
+pre code .hljs-emphasis {
+  font-style: italic;
+}
+
+/* Strong */
+pre code .hljs-strong {
+  font-weight: bold;
+}
+
+/* ===== Blockquotes ===== */
+blockquote {
+  border-left: 6px solid var(--color-primary);
+  padding-left: 1.5em;
+  margin: 1em 0;
+  color: var(--color-gray-500);
+  font-style: italic;
+  background-color: var(--color-gray-150);
+  padding: 1em 1.5em;
+  border-radius: 0 8px 8px 0;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+/* ===== Tables ===== */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  /* Better font support for Unicode combining characters (tone marks) */
+  font-family: "Noto Sans", "Arial Unicode MS", "Segoe UI", "PingFang TC", "Microsoft YaHei", sans-serif;
+}
+
+th {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.8em;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.8em;
+  border-bottom: 1px solid var(--color-gray-250);
+}
+
+tr:nth-child(even) {
+  background-color: var(--color-gray-150);
+}
+
+tr:hover {
+  background-color: rgba(211, 44, 37, 0.05);
+}
+
+/* ===== Images ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* ===== Horizontal Rule ===== */
+hr {
+  border: none;
+  height: 4px;
+  background-color: var(--color-primary);
+  margin: 2em 0;
+}
+
+/* ===== Footer Block ===== */
+/* Fixed footer bar at the bottom: copyright left, page number centered, logo on right */
+section::after {
+  /* Page number as main content */
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55px; /* 35px logo + 20px padding */
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Page number centered */
+  color: var(--color-gray-500);
+  font-size: 0.75em; /* 24px / 32px = 0.75em */
+  font-weight: 400;
+  z-index: 10;
+  /* Logo on the right side */
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5Ni44MjMiIGhlaWdodD0iNDcuNDY1IiB2aWV3Qm94PSIwIDAgOTYuODIzIDQ3LjQ2NSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoOTAuMzY2IDEuMDgyKSI+PHBhdGggZD0iTTI0Mi41MjIsNzIuMTc4aDBhLjYxOC42MTgsMCwwLDEtLjYwOC0uNjI5bC4xNTgtMjIuNDM3YS42MTUuNjE1LDAsMCwxLC4zMDgtLjUzMyw4LjUzMiw4LjUzMiwwLDAsMCwyLjI1OS0yLjI4MSwxMy45MTMsMTMuOTEzLDAsMCwwLDIuMzQ2LTcuOTZjLjA3OS01LjIuMTU4LTExLjcuMTU4LTExLjc2YS42MTkuNjE5LDAsMCwxLC42MTItLjYxN2guMDA4YS42MTguNjE4LDAsMCwxLC42MDguNjI5YzAsLjA2NC0uMDc5LDYuNTYxLS4xNTgsMTEuNzY0LS4xMTEsNy4xMzQtMy44MDcsMTAuMy00LjkxMywxMS4xbC0uMTU0LDIyLjFBLjYyOS42MjksMCwwLDEsMjQyLjUyMiw3Mi4xNzhaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMjQxLjkxIC0yNS45NikiIGZpbGw9IiNlNjAwMTIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNzkuNDIzIDEuMDg0KSI+PHBhdGggZD0iTTIxMy43NDgsNzIuMTg0YS42MTguNjE4LDAsMCwxLS4zMzYtLjEuNjMyLjYzMiwwLDAsMS0uMTgyLS44NjJjLjAzNi0uMDU2LDMuNjE3LTUuNzI0LDMuNjE3LTExLjc4OGExNy42NjksMTcuNjY5LDAsMCwwLTMuNTctMTAuMzQ1LjY0LjY0LDAsMCwxLS4wNDctLjc0NmMuMDM2LS4wNTYsMy42MTctNS43MjQsMy42MTctMTEuNzg4QTE1LjQwNSwxNS40MDUsMCwwLDAsMjEzLjc5MSwyN2EuNjI4LjYyOCwwLDAsMSwuMDUxLS44NzguNjA2LjYwNiwwLDAsMSwuODY1LjA0OCwxNi4zODYsMTYuMzg2LDAsMCwxLDMuMzY5LDEwLjM4OWMwLDUuNTc1LTIuNzQ1LDEwLjY2Mi0zLjU4MiwxMi4wOGExOC43MjIsMTguNzIyLDAsMCwxLDMuNTgyLDEwLjc5YzAsNi40NDEtMy42NjEsMTIuMjI1LTMuODE1LDEyLjQ2NUEuNi42LDAsMCwxLDIxMy43NDgsNzIuMTg0WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIxMy4xMzMgLTI1Ljk2NCkiIGZpbGw9IiNlNjAwMTIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjQuMTE1IDAuODA2KSI+PHBhdGggZD0iTTE3NS4yNTEsNzEuNzU4YS42Mi42MiwwLDAsMS0uNTkyLS40NjEuNjI5LjYyOSwwLDAsMSwuNDMtLjc2NWM0LTEuMSwzLjYxNC02LjU4MSwzLjYxLTYuNjM3VjI1Ljg4MWEuNjEyLjYxMiwwLDEsMSwxLjIyNCwwVjYzLjgyM2MuMTcsMi4yNzYtLjU1Myw2LjgyNS00LjUxNCw3LjkxMUEuNTQuNTQsMCwwLDEsMTc1LjI1MSw3MS43NThaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTc0LjYzNyAtMjUuMjYpIiBmaWxsPSIjZTYwMDEyIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU2LjgwNSAwLjgwMikiPjxwYXRoIGQ9Ik0xNjEuMTMsNzEuNzQ4YS43NzYuNzc2LDAsMCwxLS4xNjItLjAyYy0zLjk2MS0xLjA5LTQuNjg4LTUuNjM1LTQuNTE0LTcuOTExVjI1Ljg3MWEuNjEyLjYxMiwwLDEsMSwxLjIyNCwwVjYzLjg4NWMtLjAxNi4yMjQtLjM3MSw1LjU0MywzLjYxLDYuNjM3YS42MjEuNjIxLDAsMCwxLC40My43NjVBLjYwOS42MDksMCwwLDEsMTYxLjEzLDcxLjc0OFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xNTYuNDMxIC0yNS4yNSkiIGZpbGw9IiNlNjAwMTIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDIuMTUgMS4wODgpIj48cGF0aCBkPSJNMTI3LjE2Nyw3Mi4xODZhLjYxNi42MTYsMCwwLDEtLjU4OC0uNDQ5TDEyMC4xNTMsNDkuM2EuNjM4LjYzOCwwLDAsMSwuMDY3LS41Yy4wMzYtLjA2LDMuNjg5LTYuMTY0LDMuNjg5LTEyLjIzM2ExNS40MDUsMTUuNDA1LDAsMCwwLTMuMDU3LTkuNTU1LjYyOC42MjgsMCwwLDEsLjA1MS0uODc4LjYwNi42MDYsMCwwLDEsLjg2NS4wNDgsMTYuMzg2LDE2LjM4NiwwLDAsMSwzLjM2OSwxMC4zODljMCw1LjgtMy4wMjEsMTEuNDE1LTMuNzI4LDEyLjY0Nmw2LjM1LDIyLjE3N2EuNjIzLjYyMywwLDAsMS0uNDE5Ljc3NEEuODg5Ljg4OSwwLDAsMSwxMjcuMTY3LDcyLjE4NloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMjAuMTMgLTI1Ljk3NCkiIGZpbGw9IiNlNjAwMTIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIuOTI2IDAuODk2KSI+PGxpbmUgeTI9IjQ1LjI3IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjYxMiAwLjYxMikiIGZpbGw9IiNlNjAwMTIiLz48cGF0aCBkPSJNOTcuMyw3MS45ODhhLjYxNy42MTcsMCwwLDEtLjYxMi0uNjIxVjI2LjExMWEuNjEyLjYxMiwwLDEsMSwxLjIyNCwwVjcxLjM2M0EuNjE4LjYxOCwwLDAsMSw5Ny4zLDcxLjk4OFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC05Ni42OSAtMjUuNDkpIiBmaWxsPSIjZTYwMDEyIi8+PC9nPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgNC4wMDgpIj48cGF0aCBkPSJNMjguMjY0LDc2LjgyN2EuNi42LDAsMCwxLS4zODMtLjEzNi42MzIuNjMyLDAsMCwxLS4wOTUtLjg3OWMuMDU5LS4wNzIsNS44MzMtNy42LDEuOC0xOC40MjdDMjUuNTc1LDQ2LjYsMTQuMzQ3LDQ1LjY1OCwxNC4yMzMsNDUuNjVhLjYyNS42MjUsMCwwLDEtLjU3My0uNjIyVjMzLjk5MmEuNjEyLjYxMiwwLjEsMSwxLjIyNCwwVjQ0LjQ3NWMyLjQ0OS4zNTMsMTIuMDg5LDIuMzc1LDE1Ljg0OCwxMi40NzMsNC4yODUsMTEuNTE0LTEuNzM4LDE5LjMyMS0yLDE5LjY0NkEuNTg3LjU4NywwLDAsMSwyOC4yNjQsNzYuODI3WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEzLjY2IC0zMy4zNykiIGZpbGw9IiNlNjAwMTIiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMi44NTUgMCkiPjxwYXRoIGQ9Ik0zNS42MjEsMjMuMjJsLTEwLjAxNS4xNjJMMjAuODksMjcuNDU0bDkuNTg5LDkuNTg5TDMyLjUyNCwzNWwtNy41NDMtNy41NDNMMjkuNywyMy4zODJsNS45ODctLjA5NS0uMDYzLS4wNjciIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMC44OSAtMjMuMjIpIiBmaWxsPSIjZmZmIi8+PHBhdGggZD0iTTQxLjk1MiwyMy4zOWwtNS45ODcuMDk1TDMxLjI1LDI3LjU1NiwzOC43OTMsMzUuMWw3LjQzNi03LjQzNloiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNy4xNTkgLTIzLjMyMykiIGZpbGw9IiNlNjAwMTIiLz48L2c+PC9zdmc+');
+  background-size: 70px 35px;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+/* Copyright text on the left using ::before pseudo-element */
+section::before {
+  content: "© 2025 5xRuby CO., LTD";
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  color: var(--color-gray-500);
+  font-size: 0.75em; /* 24px / 32px = 0.75em */
+  font-weight: 400;
+  z-index: 11; /* Above the ::after */
+}
+
+/* ===== Header ===== */
+header {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+  right: 70px;
+  color: var(--color-gray-500);
+  font-size: 0.75em; /* 24px / 32px = 0.75em */
+  font-weight: 400;
+}
+
+/* ===== Custom Classes ===== */
+
+/* Lead class for first slide */
+section.lead {
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-gray-150) 0%, white 100%);
+}
+
+section.lead h1 {
+  border-bottom: none;
+  font-size: 2.5em; /* 80px / 32px = 2.5em */
+  margin-bottom: 0.3em;
+}
+
+section.lead p {
+  font-size: 1.125em; /* 36px / 32px = 1.125em */
+  color: var(--color-gray-500);
+  margin-top: 0;
+}
+
+/* Invert class for dark slides */
+section.invert {
+  background-color: var(--color-gray-850);
+  color: var(--color-gray-150);
+}
+
+section.invert h1,
+section.invert h2 {
+  color: var(--color-primary);
+}
+
+section.invert h3,
+section.invert h4 {
+  color: var(--color-gray-150);
+}
+
+section.invert code {
+  background-color: var(--color-gray-500);
+  color: var(--color-gray-150);
+}
+
+section.invert pre {
+  background-color: #1a1a1a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+section.invert blockquote {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-gray-250);
+}
+
+/* Highlight class for emphasis slides */
+section.highlight {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #a82419 100%);
+  color: white;
+}
+
+section.highlight h1,
+section.highlight h2,
+section.highlight h3,
+section.highlight h4,
+section.highlight h5,
+section.highlight h6 {
+  color: white;
+  border-color: white;
+}
+
+section.highlight strong {
+  color: var(--color-gray-150);
+}
+
+section.highlight code {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+section.highlight pre {
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+section.highlight pre code {
+  color: white;
+}
+
+/* Two columns layout */
+section.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+  align-items: start;
+  /* Scale down all content by reducing base font-size */
+  /* All child elements will automatically scale proportionally */
+  font-size: 0.875em; /* 28px / 32px = 87.5% - everything scales down */
+  overflow: hidden;
+}
+
+section.columns > * {
+  margin: 0;
+  overflow: hidden;
+}
+
+section.columns h2 {
+  grid-column: 1 / -1;
+}
+
+/* Center content vertically */
+section.center {
+  justify-content: center;
+}
+
+/* Font size scaling utility classes */
+section.scale-95 {
+  font-size: 0.95em;
+}
+
+section.scale-90 {
+  font-size: 0.9em;
+}
+
+section.scale-85 {
+  font-size: 0.85em;
+}
+
+section.scale-80 {
+  font-size: 0.8em;
+}
+
+section.scale-75 {
+  font-size: 0.75em;
+}
+
+section.scale-70 {
+  font-size: 0.70em;
+}
+
+section.scale-65 {
+  font-size: 0.65em;
+}
+
+/* Card-style columns layout */
+/* h1 stays outside, columns container uses grid */
+
+/* Two column container */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5em;
+  align-items: start;
+  margin-top: 1em;
+}
+
+.two-columns > div {
+  padding: 1em;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border-top: 4px solid var(--color-primary);
+  align-self: start;
+}
+
+/* Three column container */
+.three-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5em;
+  align-items: start;
+  margin-top: 1em;
+}
+
+.three-columns > div {
+  padding: 1em;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border-top: 4px solid var(--color-primary);
+  align-self: start;
+}
+
+/* Four column container */
+.four-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  align-items: start;
+  margin-top: 1em;
+}
+
+.four-columns > div {
+  padding: 0.8em;
+  background: #f5f5f5;
+  border-radius: 8px;
+  border-top: 4px solid var(--color-primary);
+  align-self: start;
+}
+
+/* Headers inside cards */
+section.two-columns h2,
+section.two-columns h3,
+section.three-columns h2,
+section.three-columns h3,
+section.four-columns h2,
+section.four-columns h3 {
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  border: none;
+}
+
+section.two-columns h2,
+section.three-columns h2,
+section.four-columns h2 {
+  font-size: 1.5em;
+}
+
+section.two-columns h3,
+section.three-columns h3,
+section.four-columns h3 {
+  font-size: 1.2em;
+}
+
+/* Lists inside cards */
+section.two-columns ul,
+section.two-columns ol,
+section.three-columns ul,
+section.three-columns ol,
+section.four-columns ul,
+section.four-columns ol {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+section.two-columns li,
+section.three-columns li,
+section.four-columns li {
+  margin: 0.3em 0;
+  line-height: 1.4;
+}
+
+/* ===== Mermaid Diagrams ===== */
+/* Container for mermaid diagrams */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100%;
+  overflow: visible;
+}
+
+/* Scale mermaid SVG to fit */
+.mermaid svg {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto !important;
+  width: auto !important;
+}
+
+/* Specific scaling for mermaid in two-column layouts */
+.two-columns .mermaid svg {
+  transform: scale(0.85);
+  transform-origin: top left;
+}
+
+/* Additional scaling for pages with scale-80 class */
+section.scale-80 .mermaid svg {
+  transform: scale(0.75);
+  transform-origin: top left;
+}
+
+section.scale-75 .mermaid svg {
+  transform: scale(0.70);
+  transform-origin: top left;
+}
