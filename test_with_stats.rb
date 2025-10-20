@@ -9,7 +9,7 @@
 # このスクリプトは3333件のコーパスレコードに対してRomanParserをテストし、
 # パーサーの成功率に関する詳細な統計を提供します。
 
-require './roman_parser'
+require './experimental/roman_parser'
 require 'json'
 
 # Initialize counters / カウンターを初期化
@@ -21,13 +21,12 @@ fallback_used = 0   # Tests where fallback was used but output was correct / フ
 # Load test data from JSON / JSONからテストデータを読み込む
 # Each record contains: id, roman, kanji, roman_array, kanji_array
 # 各レコードには：id、roman、kanji、roman_array、kanji_array が含まれます
-file_path = ARGV[0] || 'test_data/corpora-test-data.json'
+file_path = ARGV[0] || 'test_data/sample_data.json'
 test_data = JSON.parse(File.read(file_path))
 
 # Run tests / テストを実行
 test_data.each do |hsh|
   roman = hsh['roman']
-  expected_array = JSON.parse(hsh['roman_array'])
 
   # Temporarily suppress fallback messages / フォールバックメッセージを一時的に抑制
   original_stdout = $stdout
@@ -39,7 +38,7 @@ test_data.each do |hsh|
   $stdout = original_stdout
 
   # Check result and categorize / 結果をチェックして分類
-  if parsed_array == expected_array
+  if parsed_array == hsh['roman_array']
     passed += 1
     parser_worked += 1 unless output.include?("Parser failed")
     fallback_used += 1 if output.include?("Parser failed")
@@ -72,18 +71,20 @@ if failed > 0
     break if fail_count >= 10
 
     roman = hsh['roman']
-    expected_array = JSON.parse(hsh['roman_array'])
 
     original_stdout = $stdout
     $stdout = StringIO.new
     parsed_array = Experimental::RomanParser.parse_roman(roman)
+    output = $stdout.string
     $stdout = original_stdout
 
-    if parsed_array != expected_array
+    if parsed_array != hsh['roman_array']
       fail_count += 1
+      used_fallback = output.include?("Parser failed")
       puts "\nCase / ケース ##{fail_count} (ID: #{hsh['id']})"
+      puts "Method / 使用方法: #{used_fallback ? 'Fallback' : 'Parser'}"
       puts "Input / 入力: #{roman}"
-      puts "Expected / 期待値: #{expected_array.inspect}"
+      puts "Expected / 期待値: #{hsh['roman_array'].inspect}"
       puts "Actual / 実際値: #{parsed_array.inspect}"
     end
   end
