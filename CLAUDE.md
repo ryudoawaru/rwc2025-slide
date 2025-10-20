@@ -16,72 +16,131 @@
 - 目標檔案為：rubyworld-2025-taigi-parser.md
 - 圖檔都放在 images
 
-## 簡報結構概要
+## 產生插圖
+
+參考目前使用過的一些風格：
+
+簡化 ICON 風個
+
+```
+Flat design icon: A simple maze from top view with a confused person holding a "RFP 要求仕様書" document in the center. Red X marks on wrong paths. Golden orange and cream color scheme. Minimalist style.
+```
+
+一般風格
+```
+A flat design illustration showing two contrasting scenes split vertically. Left side: a developer sitting at a computer with code on
+  the screen, looking stressed and looking at a clock showing limited time. Right side: the same developer in a business suit at a
+  networking event, shaking hands with multiple government officials, holding a stack of business cards, with a calendar in background
+  showing "営業活動: 80%" (Sales Activities: 80%) in Japanese. The developer's laptop is closed and pushed to the side. The contrast
+  shows time being taken away from development work. Color scheme: warm golden orange/amber for suits and main elements, cream/beige
+  background, brown outlines. Soft pastel illustration style, warm and friendly colors, clean lines. Same color palette throughout both
+  scenes.
+```
+
+整體需要文字為日文
+
+## 簡報結構概要（最新版本 2025-10-19）
 
 ### 主要分段
 
-這是原本從 Claude 專案討論的分段，並非不可修改
+**總頁數**: 約 30+ 頁（含詳細技術頁面）
+**發表時間**: 15 分鐘
 
-1. **開場段落** (Pages 1-4)
+1. **開場段落** (Pages 1-5)
    - Page 1: 標題頁
-   - Page 2: 自我介紹與 5xRuby 簡介
-   - Page 3: 松江市 MOU 締結
-   - Page 4: 今日のテーマ
+   - Page 2: 自我介紹
+   - Page 3: RubyCity 縁結びの地との10年の物語（松江市 MOU）
+   - Page 4: 5xRuby について
+   - Page 5: 5xRuby の事業
 
-2. **第一幕：無人入札の物語** (Pages 5-7)
-   - Page 5: 台湾政府案件の特殊性
-   - Page 6: 8連敗の経験
-   - Page 7: 競合なしの真相
+2. **第一幕：無人入札の物語** (Pages 6-8)
+   - Page 6: 台湾政府案件の特殊性
+   - Page 7: 8連敗からの学び
+   - Page 8: 落札後の真相（分詞が煩雑すぎて誰も手を出さない）
 
-3. **第二幕：台羅拼音（POJ）とは？** (Pages 8-11)
-   - Page 8: 日本語との類比
-   - Page 9: 一対一対応の必要性
-   - Page 10: 視覚化展示
-   - Page 11: 実際の拆字範例
+3. **第二幕：台羅拼音（POJ）とは？** (Pages 9-11)
+   - Page 9: 台羅拼音とは？
+   - Page 10: 日本語と台湾語の文字システム
+   - Page 11: 実際の分詞アライメント処理例
 
-4. **第三幕：技術挑戰詳細** (Pages 12a-12d) ⭐核心技術段落
-   - **Page 12a**: 課題1: 連字符（ハイフン）の複雑性
-     - 3種類のハイフン處理
-     - 実例：`ji̍t--sî`（語間停頓）
-     - Scale class: `scale-75`
-   - **Page 12b**: 課題2: 聲調標記（Unicode結合文字）
-     - Unicode combining characters
-     - 正規化処理
-     - Scale class: `scale-75`
-   - **Page 12c**: 課題3: 日文混雜處理
-     - 固有名詞識別
-     - 特殊鏡像處理
-     - Scale class: `scale-75`
-   - **Page 12d**: 課題4: 特殊符號と境界
-     - 多様な引用符
-     - 句読点処理
-     - Scale class: `scale-75`
+4. **第三幕：分詞アライメント処理の実装** (Pages 12-17)
+   - Page 12: パターンルールの体系化（65+ patterns）
+   - Page 13-16: 実装の全体フロー
+     - Step 1: 漢字拆分処理
+     - Step 2: POJ拆分処理
+     - Step 3: 配對邏輯（アライメント）
+     - Step 4: 配列構築と検証
 
-5. **第四幕：解決策の進化** (Pages 13-17)
-   - Page 13: 初版の苦労（PR #30）
-   - Page 14: 規則の発見（PR #68）
-   - Page 15: ROMAN_GSUB_PATTERNS 展示
-   - Page 16: 実際の処理フロー
-   - Page 17: バランス検証
+5. **第四幕：Parser との出会い** (Pages 18-27) ⭐核心段落
+   - Page 18: RubyConf Taiwan x COSCUP 2025 からの発想
+   - Page 19: Kaneko さんのトークからの気づき
+   - Page 20: RomanParser - Parslet による実装
+   - Page 21-23: 3-Phase 詳細
+     - Phase 1: Lexical Analysis
+     - Phase 2: Syntax Analysis
+     - Phase 3: Semantic Analysis
+   - Page 24: Ruby Parser との比較
+   - **Page 25: なぜ漢字に Parser は不要なのか？** 🆕
+     - POJ の音節数 = 漢字の文字数
+     - 1:1 自動アライメントの原理
 
-6. **第五幕：コンパイラとの出会い** (Pages 18-21)
-   - Page 18: 並列比較表
-   - Page 19: Lexical Analysis
-   - Page 20: Syntax Analysis
-   - Page 21: Semantic Analysis
+6. **第五幕：Ruby の優位性** (Pages 26-28)
+   - Page 26: Ruby の3つの優位性
+   - Page 27: プロジェクトの成果
 
-7. **第六幕：Ruby の優位性** (Pages 22-24)
-   - Page 22: 正規表現の表現力
-   - Page 23: Method chaining の可読性
-   - Page 24: 実績データ
+7. **結語** (Pages 28-30)
+   - Page 28: 結論
+   - Page 29: ご清聴ありがとうございました
 
-8. **結語** (Pages 25-28)
-   - Page 25: まとめ
-   - Page 26: 今後の展望
-   - Page 27: 謝辞
-   - Page 28: QR Code & 聯絡資訊
+### 關鍵頁面標記
+
+- ⭐ **Page 25**: 新增核心洞察頁面，說明為何漢字不需要獨立 Parser
+- 🔄 **已刪除**: 原 Page 28 "3段階分析の詳細"（重複）
+- 🔄 **已刪除**: 原 Page 29 "コンパイラ理論の応用"（抽象且重複）
 
 ## 重要修正記錄
+
+### 2025-10-19: 簡報結構重整與優化 🎯
+
+#### 刪除冗餘頁面
+1. **刪除原 Page 28 "3段階分析の詳細"**
+   - **原因**: 與 Phase 1/2/3 詳細頁面重複
+   - **時間**: Line 2017-2066
+   - **影響**: 簡報更聚焦，避免重複說明
+
+2. **刪除原 Page 29 "コンパイラ理論の応用"**
+   - **原因**: 僅重複抽象概念，無新資訊
+   - **內容**: 只說明 Parser 知識可應用於自然語言，但已在 Page 27 比較中證明
+   - **影響**: 移除後直接進入 Ruby 優位性段落，邏輯更流暢
+
+#### 新增關鍵頁面
+3. **新增 Page 28 "なぜ漢字に Parser は不要なのか？"** ⭐
+   - **位置**: 在 Page 27 "Ruby Parser との比較" 之後
+   - **核心概念**: POJ の音節数 = 漢字の文字数
+   - **內容結構**:
+     - 左欄：POJ Parser 的輸出與音節計算
+       - `"suà-lo̍h".split('-').size # => 2`
+       - ハイフン = 音節分離符
+     - 右欄：漢字自動アライメント
+       - 2音節 → 取2個漢字 "紲落"
+       - 3音節 → 取3個漢字 "新竹市"
+   - **結論**:
+     - ✅ POJ Parser の音節情報で漢字を分割
+     - ✅ 漢字 Parser は不要
+     - ✅ シンプルな文字カウント操作で実現
+   - **Speaker Notes 重點**:
+     - 說明 1音節 = 1漢字 的對應關係
+     - 展示從 POJ 音節數推算漢字字數的具體步驟
+     - 類比 Ruby Parser 的原理：複雜結構先解析，簡單結構自然對應
+     - 強調 Compiler 理論的普遍性
+
+#### 修正邏輯
+- **修正前流程**: 比較 → 3段階詳細 → 抽象理論 → Ruby優位性
+- **修正後流程**: 比較 → **為何漢字不需Parser** → Ruby優位性
+- **改善點**:
+  - 減少重複內容
+  - 增加關鍵洞察（Parser 單向依賴）
+  - 邏輯更連貫：從 Parser 比較 → 深入理解（為何漢字不需要） → 技術優勢
 
 ### 2025-10-12: 術語統一
 - **變更**: `拆字（分詞）` → `分詞アライメント処理`
@@ -461,6 +520,36 @@ table {
 
 ---
 
-**Last Updated:** 2025-10-12
-**Theme Version:** 1.0
+## 本次會話總結（2025-10-19）
+
+### 主要成果
+1. **識別並刪除 2 個冗餘頁面**
+   - 原 Page 28: "3段階分析の詳細" - 與 Phase 1/2/3 頁面重複
+   - 原 Page 29: "コンパイラ理論の応用" - 僅重複抽象概念
+
+2. **新增關鍵洞察頁面**
+   - 新 Page 28: "なぜ漢字に Parser は不要なのか？"
+   - 說明 POJ Parser 的音節資訊如何自動實現漢字對齊
+   - 展示 1 音節 = 1 漢字的自然對應關係
+
+3. **簡報邏輯優化**
+   - 修正前: 比較 → 詳細說明（重複）→ 抽象理論 → Ruby 優位性
+   - 修正後: 比較 → **為何漢字不需 Parser**（關鍵洞察）→ Ruby 優位性
+   - 邏輯更連貫，減少重複，增加深度
+
+### 關鍵設計決策
+- **Parser 單向依賴原理**: 複雜結構（POJ）先解析 → 簡單結構（漢字）自然對應
+- **音節計算方法**: `"suà-lo̍h".split('-').size` 直接決定需要取幾個漢字
+- **Compiler 理論類比**: 與 Ruby Parser 處理複雜文法後構建 AST 的原理相同
+
+### 技術洞察
+這次修改的核心價值在於：
+- 不只展示「Parser 可以應用於自然語言」（抽象）
+- 而是深入說明「為什麼只需要一個 Parser」（具體洞察）
+- 體現了編譯器設計的智慧：找到關鍵結構，其他自然對應
+
+---
+
+**Last Updated:** 2025-10-19
+**Theme Version:** 1.1
 **Maintainer:** 5xRuby Development Team
