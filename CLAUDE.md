@@ -1,32 +1,32 @@
 # CLAUDE.md
 
-## RubyWorld Conference 2025 發表簡報
+## RubyWorld Conference 2025 Presentation
 
-這個專案主要目的是產生 marp 格式的簡報用於在 11/6 的 RubyWorld Conference 2025 發表，但也會製作中文版在 10.28 的 RubyJam 發表
+This project aims to generate Marp format slides for presentation at RubyWorld Conference 2025 on November 6th. A Chinese version will also be prepared for RubyJam on October 28th.
 
-## 簡報檔案
+## Slide Files
 
-- **主檔案**: `rubyworld-2025-taigi-parser.md`
-- **主題**: `5xruby.css`
-- **發表時間**: 15 分鐘（純演講，無 Q&A）
+- **Main File**: `rubyworld-2025-taigi-parser.md`
+- **Theme**: `5xruby.css`
+- **Presentation Time**: 15 minutes (pure presentation, no Q&A)
 
-## 專案目標
+## Project Goals
 
-- 產生 RubyWorld Conference 2025 的 Marp 格式日文簡報（15 分鐘發表）附講稿
-- 目標檔案為：rubyworld-2025-taigi-parser.md
-- 圖檔都放在 images
+- Generate Marp format slides in Japanese for RubyWorld Conference 2025 (15-minute presentation) with speaker notes
+- Target file: rubyworld-2025-taigi-parser.md
+- All images stored in `images/`
 
-## 產生插圖
+## Image Generation
 
-參考目前使用過的一些風格：
+Reference styles used:
 
-簡化 ICON 風個
+Simplified ICON style:
 
 ```
 Flat design icon: A simple maze from top view with a confused person holding a "RFP 要求仕様書" document in the center. Red X marks on wrong paths. Golden orange and cream color scheme. Minimalist style.
 ```
 
-一般風格
+General style:
 ```
 A flat design illustration showing two contrasting scenes split vertically. Left side: a developer sitting at a computer with code on
   the screen, looking stressed and looking at a clock showing limited time. Right side: the same developer in a business suit at a
@@ -37,135 +37,135 @@ A flat design illustration showing two contrasting scenes split vertically. Left
   scenes.
 ```
 
-整體需要文字為日文
+Overall text should be in Japanese.
 
-## 簡報結構概要（最新版本 2025-10-19）
+## Presentation Structure Overview (Latest Version 2025-10-19)
 
-### 主要分段
+### Main Sections
 
-**總頁數**: 約 30+ 頁（含詳細技術頁面）
-**發表時間**: 15 分鐘
+**Total Pages**: ~30+ pages (including detailed technical pages)
+**Presentation Time**: 15 minutes
 
-1. **開場段落** (Pages 1-5)
-   - Page 1: 標題頁
-   - Page 2: 自我介紹
-   - Page 3: RubyCity 縁結びの地との10年の物語（松江市 MOU）
-   - Page 4: 5xRuby について
-   - Page 5: 5xRuby の事業
+1. **Opening** (Pages 1-5)
+   - Page 1: Title Page
+   - Page 2: Self Introduction
+   - Page 3: 10-Year Story with RubyCity Matsue (MOU)
+   - Page 4: About 5xRuby
+   - Page 5: 5xRuby's Business
 
-2. **第一幕：無人入札の物語** (Pages 6-8)
-   - Page 6: 台湾政府案件の特殊性
-   - Page 7: 8連敗からの学び
-   - Page 8: 落札後の真相（分詞が煩雑すぎて誰も手を出さない）
+2. **Act 1: The Story of No Bidders** (Pages 6-8)
+   - Page 6: Peculiarities of Taiwan Government Projects
+   - Page 7: Lessons from 8 Consecutive Losses
+   - Page 8: Truth After Winning Bid (Word segmentation too complex, nobody dared)
 
-3. **第二幕：台羅拼音（POJ）とは？** (Pages 9-11)
-   - Page 9: 台羅拼音とは？
-   - Page 10: 日本語と台湾語の文字システム
-   - Page 11: 実際の分詞アライメント処理例
+3. **Act 2: What is POJ (Taiwanese Romanization)?** (Pages 9-11)
+   - Page 9: What is POJ?
+   - Page 10: Japanese and Taiwanese Writing Systems
+   - Page 11: Real Example of Word Segmentation Alignment Processing
 
-4. **第三幕：分詞アライメント処理の実装** (Pages 12-17)
-   - Page 12: パターンルールの体系化（65+ patterns）
-   - Page 13-16: 実装の全体フロー
-     - Step 1: 漢字拆分処理
-     - Step 2: POJ拆分処理
-     - Step 3: 配對邏輯（アライメント）
-     - Step 4: 配列構築と検証
+4. **Act 3: Word Segmentation Alignment Implementation** (Pages 12-17)
+   - Page 12: Pattern Rule Systematization (65+ patterns)
+   - Pages 13-16: Implementation Flow
+     - Step 1: Kanji Splitting Processing
+     - Step 2: POJ Splitting Processing
+     - Step 3: Alignment Logic
+     - Step 4: Array Construction and Validation
 
-5. **第四幕：Parser との出会い** (Pages 18-27) ⭐核心段落
-   - Page 18: RubyConf Taiwan x COSCUP 2025 からの発想
-   - Page 19: Kaneko さんのトークからの気づき
-   - Page 20: RomanParser - Parslet による実装
-   - Page 21-23: 3-Phase 詳細
+5. **Act 4: Encounter with Parser** (Pages 18-27) ⭐ Core Section
+   - Page 18: Inspiration from RubyConf Taiwan x COSCUP 2025
+   - Page 19: Insights from Kaneko's Talk
+   - Page 20: RomanParser - Parslet Implementation
+   - Pages 21-23: 3-Phase Details
      - Phase 1: Lexical Analysis
      - Phase 2: Syntax Analysis
      - Phase 3: Semantic Analysis
-   - Page 24: Ruby Parser との比較
-   - **Page 25: なぜ漢字に Parser は不要なのか？** 🆕
-     - POJ の音節数 = 漢字の文字数
-     - 1:1 自動アライメントの原理
+   - Page 24: Comparison with Ruby Parser
+   - **Page 25: Why Kanji Doesn't Need a Parser?** 🆕
+     - POJ syllable count = Kanji character count
+     - 1:1 automatic alignment principle
 
-6. **第五幕：Ruby の優位性** (Pages 26-28)
-   - Page 26: Ruby の3つの優位性
-   - Page 27: プロジェクトの成果
+6. **Act 5: Ruby's Advantages** (Pages 26-28)
+   - Page 26: Ruby's 3 Key Advantages
+   - Page 27: Project Results
 
-7. **結語** (Pages 28-30)
-   - Page 28: 結論
-   - Page 29: ご清聴ありがとうございました
+7. **Conclusion** (Pages 28-30)
+   - Page 28: Summary
+   - Page 29: Thank You
 
-### 關鍵頁面標記
+### Key Page Markers
 
-- ⭐ **Page 25**: 新增核心洞察頁面，說明為何漢字不需要獨立 Parser
-- 🔄 **已刪除**: 原 Page 28 "3段階分析の詳細"（重複）
-- 🔄 **已刪除**: 原 Page 29 "コンパイラ理論の応用"（抽象且重複）
+- ⭐ **Page 25**: New core insight page explaining why Kanji doesn't need independent Parser
+- 🔄 **Deleted**: Original Page 28 "3-Phase Analysis Details" (duplicate)
+- 🔄 **Deleted**: Original Page 29 "Compiler Theory Application" (abstract and duplicate)
 
-## 重要修正記錄
+## Important Revision Log
 
-### 2025-10-19: 簡報結構重整與優化 🎯
+### 2025-10-19: Presentation Structure Reorganization and Optimization 🎯
 
-#### 刪除冗餘頁面
-1. **刪除原 Page 28 "3段階分析の詳細"**
-   - **原因**: 與 Phase 1/2/3 詳細頁面重複
-   - **時間**: Line 2017-2066
-   - **影響**: 簡報更聚焦，避免重複說明
+#### Removed Redundant Pages
+1. **Deleted Original Page 28 "3-Phase Analysis Details"**
+   - **Reason**: Duplicates Phase 1/2/3 detail pages
+   - **Location**: Lines 2017-2066
+   - **Impact**: Presentation more focused, avoiding repetition
 
-2. **刪除原 Page 29 "コンパイラ理論の応用"**
-   - **原因**: 僅重複抽象概念，無新資訊
-   - **內容**: 只說明 Parser 知識可應用於自然語言，但已在 Page 27 比較中證明
-   - **影響**: 移除後直接進入 Ruby 優位性段落，邏輯更流暢
+2. **Deleted Original Page 29 "Compiler Theory Application"**
+   - **Reason**: Only repeats abstract concepts, no new information
+   - **Content**: Only explains Parser knowledge can apply to NLP, already proven in Page 27 comparison
+   - **Impact**: After removal, flows directly into Ruby advantages section, better logic
 
-#### 新增關鍵頁面
-3. **新增 Page 28 "なぜ漢字に Parser は不要なのか？"** ⭐
-   - **位置**: 在 Page 27 "Ruby Parser との比較" 之後
-   - **核心概念**: POJ の音節数 = 漢字の文字数
-   - **內容結構**:
-     - 左欄：POJ Parser 的輸出與音節計算
+#### Added Key Page
+3. **Added Page 28 "Why Kanji Doesn't Need a Parser?"** ⭐
+   - **Position**: After Page 27 "Comparison with Ruby Parser"
+   - **Core Concept**: POJ syllable count = Kanji character count
+   - **Content Structure**:
+     - Left column: POJ Parser output and syllable counting
        - `"suà-lo̍h".split('-').size # => 2`
-       - ハイフン = 音節分離符
-     - 右欄：漢字自動アライメント
-       - 2音節 → 取2個漢字 "紲落"
-       - 3音節 → 取3個漢字 "新竹市"
-   - **結論**:
-     - ✅ POJ Parser の音節情報で漢字を分割
-     - ✅ 漢字 Parser は不要
-     - ✅ シンプルな文字カウント操作で実現
-   - **Speaker Notes 重點**:
-     - 說明 1音節 = 1漢字 的對應關係
-     - 展示從 POJ 音節數推算漢字字數的具體步驟
-     - 類比 Ruby Parser 的原理：複雜結構先解析，簡單結構自然對應
-     - 強調 Compiler 理論的普遍性
+       - Hyphen = syllable separator
+     - Right column: Kanji automatic alignment
+       - 2 syllables → Take 2 Kanji "紲落"
+       - 3 syllables → Take 3 Kanji "新竹市"
+   - **Conclusion**:
+     - ✅ Kanji split using POJ Parser's syllable info
+     - ✅ Kanji Parser unnecessary
+     - ✅ Achieved through simple character counting
+   - **Speaker Notes Key Points**:
+     - Explain 1 syllable = 1 Kanji correspondence
+     - Show concrete steps from POJ syllable count to Kanji count
+     - Analogy to Ruby Parser principle: complex structure parsed first, simple structure naturally corresponds
+     - Emphasize universality of Compiler theory
 
-#### 修正邏輯
-- **修正前流程**: 比較 → 3段階詳細 → 抽象理論 → Ruby優位性
-- **修正後流程**: 比較 → **為何漢字不需Parser** → Ruby優位性
-- **改善點**:
-  - 減少重複內容
-  - 增加關鍵洞察（Parser 單向依賴）
-  - 邏輯更連貫：從 Parser 比較 → 深入理解（為何漢字不需要） → 技術優勢
+#### Logic Improvements
+- **Before**: Comparison → 3-Phase Details → Abstract Theory → Ruby Advantages
+- **After**: Comparison → **Why Kanji Doesn't Need Parser** → Ruby Advantages
+- **Improvements**:
+  - Reduced repetition
+  - Added key insight (Parser one-way dependency)
+  - More coherent logic: Parser comparison → Deep understanding (why Kanji doesn't need) → Technical advantages
 
-### 2025-10-12: 術語統一
-- **變更**: `拆字（分詞）` → `分詞アライメント処理`
-- **位置**: Line 295
-- **原因**: 使用更精確的技術術語
+### 2025-10-12: Terminology Unification
+- **Change**: `拆字（分詞）` → `分詞アライメント処理` (Word Segmentation Alignment Processing)
+- **Location**: Line 295
+- **Reason**: Use more precise technical terminology
 
-### 2025-10-12: Page 12a 重大修正
-- **問題**: 原本列出 4 種連字符處理，但第 4 種（`文脈依存の分離`）在實際程式碼中並未實作
-- **修正**: 改為 3 種處理類型
-  1. 單詞內連字符（保持）
-  2. 二重ハイフン（境界標記）
-  3. 前置ハイフン（語間停頓）
-- **新增實例**: `ji̍t--sî`（日時）
+### 2025-10-12: Page 12a Major Correction
+- **Issue**: Originally listed 4 hyphen handling types, but type 4 (`文脈依存の分離`) not actually implemented
+- **Fix**: Changed to 3 handling types
+  1. Intra-word hyphens (preserve)
+  2. Double hyphen (boundary marker)
+  3. Prefix hyphen (inter-word pause)
+- **New Example**: `ji̍t--sî` (date-time)
   ```
-  漢字: "日時斷斷仔"
-  POJ:  "ji̍t--sî tuān-tuān-á"
+  Kanji: "日時斷斷仔"
+  POJ:   "ji̍t--sî tuān-tuān-á"
   ```
-- **關鍵發現**:
-  - 最終 split 是用空格 (`split(/\s/)`)，不是用連字符
-  - `--` 在 KANJI 側有處理（line 68），但在 ROMAN 側被註解掉（line 48-49）
-  - 前置連字符在 `roman_kanji_array` 方法中特殊處理（lines 146-149）
+- **Key Findings**:
+  - Final split uses space (`split(/\s/)`), not hyphen
+  - `--` handled on KANJI side (line 68), but commented out on ROMAN side (lines 48-49)
+  - Prefix hyphen specially handled in `roman_kanji_array` method (lines 146-149)
 
-## Scale Classes 使用說明
+## Scale Classes Usage
 
-為了防止內容溢出到 footer 區域，本簡報使用了自定義的 scale utility classes：
+To prevent content overflow into footer area, this presentation uses custom scale utility classes:
 
 ```css
 section.scale-95 { font-size: 95%; }
@@ -177,299 +177,300 @@ section.scale-70 { font-size: 70%; }
 section.scale-65 { font-size: 65%; }
 ```
 
-### 目前使用情況
-- **Pages 12a-12d**: 使用 `scale-75` (75%)
-  - 原因：技術細節頁面，內容密集
-  - 包含：程式碼範例、實例展示、說明文字
+### Current Usage
+- **Pages 12a-12d**: Using `scale-75` (75%)
+  - Reason: Technical detail pages, dense content
+  - Contains: Code examples, demonstrations, explanatory text
 
-### 何時使用 Scale Classes
-1. 技術細節豐富的頁面
-2. 包含多段程式碼的頁面
-3. 需要同時展示輸入/輸出範例的頁面
-4. 內容接近或超出 footer 區域時
+### When to Use Scale Classes
+1. Pages rich in technical details
+2. Pages with multiple code blocks
+3. Pages showing input/output examples simultaneously
+4. When content approaches or exceeds footer area
 
-## 程式碼來源對照
+## Code Source Reference
 
-本簡報中的程式碼範例均來自實際專案，專案在上一層目錄
+All code examples in this presentation come from actual project, located in parent directory.
 
-### 關鍵常數
-- **ROMAN_GSUB_PATTERNS**: 65+ 個模式替換規則（lines 9-66）
-- **KANJI_GSUB_PATTERNS**: 漢字側的模式規則（lines 67-79）
-- **ONE_KANJI_WORDS**: 單字漢字特殊處理（lines 81-85）
-- **SP_MIRRORS**: 特殊鏡像處理（lines 87-89）
+### Key Constants
+- **ROMAN_GSUB_PATTERNS**: 65+ pattern replacement rules (lines 9-66)
+- **KANJI_GSUB_PATTERNS**: Kanji-side pattern rules (lines 67-79)
+- **ONE_KANJI_WORDS**: Special single-kanji handling (lines 81-85)
+- **SP_MIRRORS**: Special mirror handling (lines 87-89)
 
-### 核心方法
+### Core Methods
 1. **`roman_kanji_array`** (lines 146-176)
-   - 主要的對齊邏輯
-   - 處理前置連字符
-   - 處理二重連字符
+   - Main alignment logic
+   - Handles prefix hyphens
+   - Handles double hyphens
 
 2. **`splitted_roman`** (lines 115-117)
-   - 使用空格分割 POJ
-   - **關鍵**: `split(/\s/)`，不是用連字符分割
+   - Splits POJ using space
+   - **Key**: `split(/\s/)`, not splitting by hyphen
 
 3. **`splitted_kanji`** (lines 119-123)
-   - 使用 RXP_SPK regex 分割漢字
-   - 結合 `ONE_KANJI_WORDS` 處理
+   - Splits Kanji using RXP_SPK regex
+   - Combines with `ONE_KANJI_WORDS` handling
 
 4. **`washed_roman`** (lines 101-106)
-   - 套用所有 ROMAN_GSUB_PATTERNS
-   - 正規化處理
+   - Applies all ROMAN_GSUB_PATTERNS
+   - Normalization processing
 
 5. **`set_arrays`** (lines 134-144)
-   - 設定陣列並驗證平衡性
-   - 錯誤處理
+   - Sets arrays and validates balance
+   - Error handling
 
-## 技術術語對照（簡報用）
+## Technical Terminology Reference (For Presentation)
 
-| 中文 | 日語 | 英文 | 備註 |
-|------|------|------|------|
-| 分詞 | 分詞 | Word Segmentation | 現統一用「分詞アライメント処理」 |
-| 白話字 | 白話字 | Pe̍h-ōe-jī (POJ) | 台灣語羅馬字系統 |
+| Chinese | Japanese | English | Notes |
+|---------|----------|---------|-------|
+| 分詞 | 分詞 | Word Segmentation | Now unified as "分詞アライメント処理" |
+| 白話字 | 白話字 | Pe̍h-ōe-jī (POJ) | Taiwanese romanization system |
 | 聲調標記 | 声調記号 | Tone Marks | Unicode combining characters |
 | 連字符 | ハイフン | Hyphen | - |
-| 語間停頓 | 語間停頓 | Inter-word Pause | `--` 符號，類似日語「っ」 |
+| 語間停頓 | 語間停頓 | Inter-word Pause | `--` symbol, similar to Japanese "っ" |
 | 對齊 | アライメント | Alignment | - |
 | 平衡性檢查 | バランス検証 | Balance Check | `arrays_balanced` |
 | 字句解析 | 字句解析 | Lexical Analysis | Tokenization |
 | 構文解析 | 構文解析 | Syntax Analysis | Pattern Matching |
 | 意味解析 | 意味解析 | Semantic Analysis | Validation |
 
-## Speaker Notes 使用指南
+## Speaker Notes Guide
 
-每個頁面都包含詳細的 Speaker Notes，位於 `<!--` 和 `-->` 之間。
+Each page contains detailed Speaker Notes between `<!--` and `-->`.
 
-### Speaker Notes 結構
+### Speaker Notes Structure
 ```markdown
 <!--
-Speaker Notes 內容：
-- 這一頁要講的重點
-- 預計講述時間
-- 需要強調的技術細節
-- 與聽眾的互動點
+Speaker Notes Content:
+- Key points for this page
+- Estimated speaking time
+- Technical details to emphasize
+- Audience interaction points
 -->
 ```
 
-### Page 12a Speaker Notes 範例
+### Page 12a Speaker Notes Example
 ```markdown
-さて、ここからが本発表の核心部分です。
-まず最初の課題は、連字符、つまりハイフンの複雑性です。
+Now, we reach the core section of this presentation.
+The first challenge is the complexity of hyphens.
 
-台湾語のPOJには、3種類のハイフン処理が必要です。
+POJ in Taiwanese requires 3 types of hyphen handling.
 
-1つ目は、単語内の連字符です。
-これは保持すべきものです。
+First, intra-word hyphens.
+These should be preserved.
 ...
 
-3つ目は、前置ハイフンの処理です。
-実際の例を見てみましょう。
-「日時斷斷仔」という文章があります。
-POJでは「ji̍t--sî tuān-tuān-á」と書きます。
+Third, prefix hyphen handling.
+Let's look at an actual example.
+There's a sentence "日時斷斷仔".
+In POJ, it's written as "ji̍t--sî tuān-tuān-á".
 
-この「--」は語間停頓を表す特殊なマーカーです。
-日本語の促音「っ」に似ています。
+This "--" is a special marker representing inter-word pause.
+It's similar to the Japanese geminate consonant "っ".
 ```
 
-## 維護注意事項
+## Maintenance Notes
 
-### 1. 保持程式碼準確性
-- 所有程式碼範例必須與實際專案一致
-- 更新程式碼前先查看最新的 Git commit
-- 不應該展示不存在的功能
+### 1. Maintain Code Accuracy
+- All code examples must match actual project
+- Check latest Git commits before updating code
+- Should not show non-existent features
 
-### 2. Scale Classes 調整
-- 如果內容溢出，先嘗試調整 scale percentage
-- 避免低於 `scale-65` (65%)，會影響可讀性
-- 考慮分成多張投影片
+### 2. Scale Classes Adjustment
+- Try adjusting scale percentage if content overflows
+- Avoid below `scale-65` (65%), affects readability
+- Consider splitting into multiple slides
 
-### 3. 術語一致性
-- 使用 `分詞アライメント処理` 而非 `拆字（分詞）`
-- 保持中文、日語、英文術語對照表更新
-- 新術語加入前先確認日語正確性
+### 3. Terminology Consistency
+- Use `分詞アライメント処理` instead of `拆字（分詞）`
+- Keep terminology reference table updated (Chinese, Japanese, English)
+- Confirm Japanese correctness before adding new terms
 
-### 4. 實例更新
-- 實例必須來自真實語料庫資料
-- 提供完整的輸入/輸出範例
-- 說明實例的代表性
+### 4. Example Updates
+- Examples must come from real corpus data
+- Provide complete input/output examples
+- Explain representativeness of examples
 
-## 預覽與匯出
+## Preview and Export
 
-### 本地預覽
+### Local Preview
 ```bash
 npx @marp-team/marp-cli@latest -s ./
 ```
 
-打開 http://localhost:8080/rubyworld-2025-taigi-parser.md 檢查
-### 檢查清單
-- [ ] 所有頁面內容未溢出到 footer
-- [ ] 程式碼 syntax highlighting 正確
-- [ ] 日語文法與術語正確
-- [ ] Speaker Notes 完整且清晰
-- [ ] 實例資料正確
-- [ ] 時間控制在 15 分鐘內
-- [ ] 圖片與 logo 正確顯示
+Open http://localhost:8080/rubyworld-2025-taigi-parser.md to check
 
-## 相關資源
+### Checklist
+- [ ] All page content doesn't overflow into footer
+- [ ] Code syntax highlighting correct
+- [ ] Japanese grammar and terminology correct
+- [ ] Speaker Notes complete and clear
+- [ ] Example data correct
+- [ ] Time controlled within 15 minutes
+- [ ] Images and logos display correctly
 
-### 專案連結
+## Related Resources
+
+### Project Links
 - **GitLab**: https://git.5xruby.com/naer/naer/
 - **Redmine**: https://redmine.5xruby.com/issues/5432
-- **GitHub（公開版）**: https://github.com/5xruby/naer
+- **GitHub (Public)**: https://github.com/5xruby/naer
 
-### 參考文件
+### Reference Documents
 - Corpus Model: `app/models/corpus.rb`
 - CorporaArraySettable: `app/models/concerns/corpora_array_settable.rb`
-- 後台資料庫檔案範例: `後台資料庫檔案範例.xlsx`
-- 拆字前範例: `拆字前的表格範例.xlsx`
-- 拆字校正結果: `拆字校正結果的範例.xlsx`
+- Backend Database File Examples: `後台資料庫檔案範例.xlsx`
+- Pre-split Examples: `拆字前的表格範例.xlsx`
+- Split Correction Results: `拆字校正結果的範例.xlsx`
 
-### 會議資訊
-- **會議**: RubyWorld Conference 2025
-- **日期**: 2025年11月6-7日
-- **地點**: 島根県松江市
-- **演講時間**: 15分鐘（純演講，無Q&A）
-- **語言**: 日語
+### Conference Information
+- **Conference**: RubyWorld Conference 2025
+- **Date**: November 6-7, 2025
+- **Location**: Matsue City, Shimane Prefecture
+- **Presentation Time**: 15 minutes (pure presentation, no Q&A)
+- **Language**: Japanese
 
-## 基本資訊
-- **發表題目**: コードのように台湾語を解析：Rubyによる白話字ローマ字の3段階解析
-- **發表者**: 鄧慕凡 (Mu-Fan Teng)
-- **所屬**: 5xRuby CO., LTD
-- **發表時間**: 15分鐘（純演講，無Q&A）
-- **發表語言**: 日語
-- **日期**: 2025年11月6-7日
-- **地點**: 島根県松江市
+## Basic Information
+- **Presentation Title**: コードのように台湾語を解析：Rubyによる白話字ローマ字の3段階解析
+- **Presenter**: Mu-Fan Teng (鄧慕凡)
+- **Affiliation**: 5xRuby CO., LTD
+- **Presentation Time**: 15 minutes (pure presentation, no Q&A)
+- **Language**: Japanese
+- **Date**: November 6-7, 2025
+- **Location**: Matsue City, Shimane Prefecture
 
-## 專案背景資料
+## Project Background
 
-### GitLab 專案
-- **專案URL**: https://git.5xruby.com/naer/naer/
-- 請使用 mcp 參考
-- **關鍵PR**:
-  - PR #30: 初版實作（基礎規則）
-  - PR #68: 引入ROMAN_GSUB_PATTERNS（40+規則）  
-  - PR #73: 處理特殊case的修正
+### GitLab Project
+- **Project URL**: https://git.5xruby.com/naer/naer/
+- Please use MCP to reference
+- **Key PRs**:
+  - PR #30: Initial implementation (basic rules)
+  - PR #68: Introduced ROMAN_GSUB_PATTERNS (40+ rules)
+  - PR #73: Special case fixes
 
 ### Redmine Issue
 - **Issue #5432**: https://redmine.5xruby.com/issues/5432
-- 請使用 mcp 參考
-- **內容**: 拆字需求與範例
+- Please use MCP to reference
+- **Content**: Word splitting requirements and examples
 
-### 系統概述
-- **名稱**: 臺灣台語語料庫應用檢索系統 (NAER)
-- **委託方**: 教育部/國家教育研究院
-- **規模**: 208小時語音資料
-- **服務對象**: 全台國中小學台語教育
+### System Overview
+- **Name**: Taiwan Taiwanese Corpus Application Search System (NAER)
+- **Client**: Ministry of Education / National Academy for Educational Research
+- **Scale**: 208 hours of audio data
+- **Target Audience**: Elementary and junior high schools across Taiwan for Taiwanese language education
 
-### 原始資料範例
+### Original Data Examples
 
-- 後台資料庫檔案範例.xlsx
+- Backend Database File Examples.xlsx
 
-## 拆字範例（核心問題）
+## Word Splitting Examples (Core Problem)
 
-- 拆字前的表格範例.xlsx
-- 拆字校正結果的範例.xlsx
+- Pre-split Table Examples.xlsx
+- Split Correction Results Examples.xlsx
 
-### 輸入資料
+### Input Data
 ```
 TA23_43969	紲落來看新竹市明仔載二十六號的天氣	suà-lo̍h lâi-khuànn Sin-tik-tshī bîn-á-tsài gī-tsa̍p-la̍k hō ê thinn-khì
 ```
 
-### 期待輸出
+### Expected Output
 
-#### 漢字陣列
+#### Kanji Array
 ```
 紲落｜來看｜新竹市｜明仔載｜二十六｜號｜的｜天氣
 ```
 
-#### 台羅陣列
+#### POJ Array
 ```
 suà-lo̍h｜lâi-khuànn｜Sin-tik-tshī｜bîn-á-tsài｜gī-tsa̍p-la̍k｜hō｜ê｜thinn-khì
 ```
 
-### 技術挑戰
-1. 連字符處理（hyphen）
-2. 聲調標記（tone marks）
-3. 日文混雜處理
-4. 數字音韻變化
-5. 特殊符號處理
+### Technical Challenges
+1. Hyphen handling
+2. Tone marks
+3. Mixed Japanese handling
+4. Numeric phonetic changes
+5. Special symbol handling
 
-## 日語技術術語對照表
+## Japanese Technical Terminology Reference
 
-| 中文/英文 | 日語 | 讀音 |
-|---------|------|------|
-| 拆字/分詞 | 分詞 | ぶんし |
-| 白話字(POJ) | 白話字 | ペーオージー |
-| 聲調標記 | 声調記号 | せいちょうきごう |
-| 連字符 | ハイフン | - |
-| 對齊 | アライメント | - |
-| 煩雜 | 煩雑 | はんざつ |
+| Chinese/English | Japanese | Reading |
+|----------------|----------|---------|
+| Word Splitting | 分詞 | ぶんし |
+| POJ | 白話字 | ペーオージー |
+| Tone Marks | 声調記号 | せいちょうきごう |
+| Hyphen | ハイフン | - |
+| Alignment | アライメント | - |
+| Complex | 煩雑 | はんざつ |
 | Parser | パーサー | - |
-| 字句解析 | 字句解析 | じくかいせき |
-| 構文解析 | 構文解析 | こうぶんかいせき |
-| 意味解析 | 意味解析 | いみかいせき |
-| 正規表現 | 正規表現 | せいきひょうげん |
-| Ruby傳教士 | Ruby伝道師 | Ruby でんどうし |
+| Lexical Analysis | 字句解析 | じくかいせき |
+| Syntax Analysis | 構文解析 | こうぶんかいせき |
+| Semantic Analysis | 意味解析 | いみかいせき |
+| Regular Expression | 正規表現 | せいきひょうげん |
+| Ruby Evangelist | Ruby伝道師 | Ruby でんどうし |
 
-### 簡化版 Demo Code
+### Simplified Demo Code
 ```ruby
 # demo.rb
 class TaigiParser
   def initialize
     @patterns = load_patterns
   end
-  
+
   def parse(input)
     puts "=" * 50
     puts "Input: #{input}"
     puts "=" * 50
-    
+
     # Step 1: Tokenize
     puts "\n[Step 1] Tokenizing..."
     tokens = tokenize(input)
     puts "Tokens: #{tokens.inspect}"
-    
+
     # Step 2: Align
     puts "\n[Step 2] Aligning..."
     aligned = align(tokens)
     puts "Aligned: #{aligned.inspect}"
-    
+
     # Step 3: Validate
     puts "\n[Step 3] Validating..."
     result = validate(aligned)
     puts "Result: #{result ? '✓ Success' : '✗ Failed'}"
-    
+
     aligned
   end
 end
 
-# 執行範例
+# Execution example
 parser = TaigiParser.new
 parser.parse("suà-lo̍h lâi-khuànn Sin-tik-tshī")
 ```
 
-### 執行測試
+### Running Tests
 
 ```bash
-# 測試範例資料（預設，約 3,000 筆）
+# Test sample data (default, ~3,000 entries)
 ruby test_parser.rb
 
-# 或指定測試檔案
+# Or specify test file
 ruby test_parser.rb test_data/sample_data.json
 
-# 測試完整 64,554 筆資料
+# Test full 64,554 entries
 ruby test_parser.rb test_data/corpora_data_new.json
 ```
 
-**測試腳本特色**：
-- 進度條顯示（█ 和 ░ 視覺效果）
-- 即時百分比更新
-- 最終統計結果
-- 錯誤案例顯示（如有）
-- 100% 成功時顯示慶祝訊息
+**Test Script Features**:
+- Progress bar display (█ and ░ visual effects)
+- Real-time percentage updates
+- Final statistics
+- Error case display (if any)
+- Celebration message on 100% success
 
-## Marp 格式注意事項
+## Marp Format Notes
 
-### 基本設定
+### Basic Settings
 ```yaml
 ---
 marp: true
@@ -480,9 +481,9 @@ footer: '© 2025 5xRuby'
 ---
 ```
 
-### 建議樣式
+### Suggested Styles
 ```css
-/* 自定義樣式 */
+/* Custom styles */
 section.center {
   text-align: center;
 }
@@ -502,32 +503,32 @@ table {
 }
 ```
 
-## 視覺化素材建議
+## Visual Material Suggestions
 
-1. **開場頁**: 5xRuby Logo + 松江市MOU照片
-2. **故事線圖表**: 8次落選 → 無人競標 → 得標
-3. **POJ對照表**: 動畫展示漢字與台羅的對應
-4. **程式碼演進**: Before/After 對比
-5. **Parser類比圖**: 左右對照的流程圖
-6. **成果數據**: 資訊圖表展示208小時、全台學校
-7. **QR Code**: GitHub連結
+1. **Opening Page**: 5xRuby Logo + Matsue MOU photo
+2. **Story Timeline Chart**: 8 losses → No bidders → Win
+3. **POJ Comparison Table**: Animation showing Kanji and POJ correspondence
+4. **Code Evolution**: Before/After comparison
+5. **Parser Analogy Diagram**: Side-by-side flow chart
+6. **Results Data**: Infographic showing 208 hours, schools nationwide
+7. **QR Code**: GitHub link
 
-## 時間掌控提醒
+## Time Management Reminders
 
-- 每張投影片平均30-45秒
-- Demo部分預留buffer時間
-- 準備15-20張投影片
-- 關鍵程式碼使用syntax highlighting
-- 避免過多文字，多用圖像
+- Average 30-45 seconds per slide
+- Reserve buffer time for demo
+- Prepare 15-20 slides
+- Use syntax highlighting for key code
+- Avoid excessive text, use more visuals
 
-## 參考資料
+## References
 
-1. **CFP投稿內容**: RubyWorld Conference 2025 発表者募集回覆
-2. **系統說明書**: 國家教育研究院臺灣台語語料庫應用檢索系統建置案
-3. **教育部計畫**: 閩南語語音語料庫建置計畫（2019-2022）
-4. **技術文件**: GitLab專案文件與PR記錄
+1. **CFP Submission Content**: RubyWorld Conference 2025 Call for Speakers response
+2. **System Documentation**: National Academy for Educational Research Taiwan Taiwanese Corpus Application Search System Construction Project
+3. **Ministry of Education Project**: Minnan Language Audio Corpus Construction Project (2019-2022)
+4. **Technical Documentation**: GitLab project documentation and PR records
 
-## 聯絡資訊
+## Contact Information
 
 - **Email**: ryudo@5xruby.com
 - **GitHub**: https://github.com/5xruby
@@ -536,21 +537,21 @@ table {
 
 ---
 
-*本文件用於 Claude 產生 Marp 格式簡報，請依據上述內容產生對應的投影片內容。*
+*This document is for Claude to generate Marp format slides. Please generate corresponding slide content based on the above.*
 
 ---
 
-## Parser 開發歷程記錄
+## Parser Development History
 
-### 2025-10-20: RomanParserPure 優化 - str() vs match[] 🎯
+### 2025-10-20: RomanParserPure Optimization - str() vs match[] 🎯
 
-#### 問題發現
-用戶質疑：「left_quote / right_quote 用 str 不奇怪嗎？因為都是一樣的字符，它應該要是 regexp 吧？」
+#### Problem Discovery
+User questioned: "Isn't it strange to use str for left_quote/right_quote? Since they're the same characters, shouldn't it be regexp?"
 
-#### 分析與修正
-雖然 U+201C (") 和 U+201D (") 是不同的 Unicode codepoint，但在 Parser 階段我們只需要「識別它是引號」，不需要區分左右。使用 `match[]` 更符合「字元類別」的語意。
+#### Analysis and Fix
+Although U+201C (") and U+201D (") are different Unicode codepoints, in the Parser phase we only need to "identify it as a quote", not distinguish left/right. Using `match[]` better fits the "character class" semantics.
 
-**修改前 (V3 - 使用 str() 串聯)**:
+**Before (V3 - using str() chaining)**:
 ```ruby
 rule(:punctuation) do
   str('...') | str('⋯⋯') | str('……') |  # Multi-char first
@@ -565,7 +566,7 @@ rule(:punctuation) do
 end
 ```
 
-**修改後 (V4 - 使用 match[] 分類)**:
+**After (V4 - using match[] categorization)**:
 ```ruby
 rule(:punctuation) do
   str('...') | str('⋯⋯') | str('……') |  # Multi-char first
@@ -575,188 +576,188 @@ rule(:punctuation) do
 end
 ```
 
-#### 測試結果
+#### Test Results
 
-| 實現方式 | 64,554 筆完整資料 | 3,000 筆範例 | Parse 成功率 |
-|---------|------------------|--------------|------------|
-| str() 串聯 (V3) | 64,191/64,554 (99.44%) | 2,983/3,000 | 99.44% |
-| **match[] 分類 (V4)** | **64,191/64,554 (99.44%)** | **2,987/3,000 (99.57%)** | **99.44%** |
+| Implementation | 64,554 Full Data | 3,000 Sample | Parse Success Rate |
+|----------------|------------------|--------------|-------------------|
+| str() chaining (V3) | 64,191/64,554 (99.44%) | 2,983/3,000 | 99.44% |
+| **match[] categorization (V4)** | **64,191/64,554 (99.44%)** | **2,987/3,000 (99.57%)** | **99.44%** |
 
-#### 優勢分析
-1. **更符合 Parslet 慣例**: `match[]` 是匹配字元集合的標準方式
-2. **程式碼更簡潔**: 14 行 → 6 行
-3. **語意更清楚**: 分類更明確（單字元標點、引號、CJK 引號）
-4. **效能維持**: Parse 成功率保持 99.44% (64,191/64,554)
-5. **教學價值**: 更適合用於 RubyWorld Conference 2025 展示
+#### Advantages Analysis
+1. **Better fits Parslet conventions**: `match[]` is the standard way to match character sets
+2. **More concise code**: 14 lines → 6 lines
+3. **Clearer semantics**: Better categorization (single-char punctuation, quotes, CJK quotes)
+4. **Performance maintained**: Parse success rate maintained at 99.44% (64,191/64,554)
+5. **Educational value**: More suitable for RubyWorld Conference 2025 demonstration
 
-#### 檔案位置
-- `experimental/roman_parser_pure.rb` - Line 42-48
-
----
-
-### 2025-10-19: 簡報結構優化
-
-#### 主要成果
-1. **識別並刪除 2 個冗餘頁面**
-   - 原 Page 28: "3段階分析の詳細" - 與 Phase 1/2/3 頁面重複
-   - 原 Page 29: "コンパイラ理論の応用" - 僅重複抽象概念
-
-2. **新增關鍵洞察頁面**
-   - 新 Page 28: "なぜ漢字に Parser は不要なのか？"
-   - 說明 POJ Parser 的音節資訊如何自動實現漢字對齊
-   - 展示 1 音節 = 1 漢字的自然對應關係
-
-3. **簡報邏輯優化**
-   - 修正前: 比較 → 詳細說明（重複）→ 抽象理論 → Ruby 優位性
-   - 修正後: 比較 → **為何漢字不需 Parser**（關鍵洞察）→ Ruby 優位性
-   - 邏輯更連貫，減少重複，增加深度
-
-#### 關鍵設計決策
-- **Parser 單向依賴原理**: 複雜結構（POJ）先解析 → 簡單結構（漢字）自然對應
-- **音節計算方法**: `"suà-lo̍h".split('-').size` 直接決定需要取幾個漢字
-- **Compiler 理論類比**: 與 Ruby Parser 處理複雜文法後構建 AST 的原理相同
-
-#### 技術洞察
-這次修改的核心價值在於：
-- 不只展示「Parser 可以應用於自然語言」（抽象）
-- 而是深入說明「為什麼只需要一個 Parser」（具體洞察）
-- 體現了編譯器設計的智慧：找到關鍵結構，其他自然對應
+#### File Location
+- `experimental/roman_parser_pure.rb` - Lines 42-48
 
 ---
 
-### 2025-10-20: RomanParserPure V5 - 前置連字符處理 🚀
+### 2025-10-19: Presentation Structure Optimization
 
-#### 問題分析
+#### Main Achievements
+1. **Identified and removed 2 redundant pages**
+   - Original Page 28: "3-Phase Analysis Details" - Duplicates Phase 1/2/3 pages
+   - Original Page 29: "Compiler Theory Application" - Only repeats abstract concepts
 
-**Parse 失敗案例**：`"(-pha)"` 等括號內前置連字符無法被 parse
+2. **Added key insight page**
+   - New Page 28: "Why Kanji Doesn't Need a Parser?"
+   - Explains how POJ Parser's syllable info automatically achieves Kanji alignment
+   - Shows natural 1 syllable = 1 Kanji correspondence
 
-**根本原因**：
-- 當前 `hyphenated_word` 規則：`syllable >> (hyphen >> syllable).repeat`
-- 要求必須以 `syllable` 開頭
-- `-pha` 開頭是 hyphen，不符合規則 ✗
+3. **Presentation logic optimization**
+   - Before: Comparison → Details (duplicate) → Abstract theory → Ruby advantages
+   - After: Comparison → **Why Kanji doesn't need Parser** (key insight) → Ruby advantages
+   - More coherent logic, reduced repetition, increased depth
 
-#### 解決方案探索
+#### Key Design Decisions
+- **Parser one-way dependency principle**: Complex structure (POJ) parsed first → Simple structure (Kanji) naturally corresponds
+- **Syllable counting method**: `"suà-lo̍h".split('-').size` directly determines how many Kanji to take
+- **Compiler theory analogy**: Same principle as Ruby Parser handling complex grammar then building AST
 
-**選項 1（❌ 被否決）**：將 `-` 定義為獨立 token
+#### Technical Insights
+Core value of this revision:
+- Not just showing "Parser can apply to NLP" (abstract)
+- But deeply explaining "why only one Parser is needed" (concrete insight)
+- Embodies compiler design wisdom: find key structure, others naturally correspond
+
+---
+
+### 2025-10-20: RomanParserPure V5 - Prefix Hyphen Handling 🚀
+
+#### Problem Analysis
+
+**Parse failure case**: `"(-pha)"` - prefix hyphen in parentheses cannot be parsed
+
+**Root cause**:
+- Current `hyphenated_word` rule: `syllable >> (hyphen >> syllable).repeat`
+- Requires starting with `syllable`
+- `-pha` starts with hyphen, doesn't match rule ✗
+
+#### Solution Exploration
+
+**Option 1 (❌ rejected)**: Define `-` as independent token
 ```ruby
 rule(:token) do
-  single_hyphen.as(:hyphen) |  # 單獨連字符
+  single_hyphen.as(:hyphen) |  # Standalone hyphen
   hyphenated_word.as(:word) |
   # ...
 end
 ```
 
-**問題**：會破壞對齊關係
+**Problem**: Would break alignment
 ```ruby
 "(-pha)" → ["(", "-", "pha", ")"]  # 4 tokens
-漢字：   ['（', '脬', '）']        # 3 chars
-✗ 不平衡！且 "-" 沒有對應的漢字
+Kanji:   ['（', '脬', '）']        # 3 chars
+✗ Unbalanced! And "-" has no corresponding Kanji
 ```
 
-**選項 2（✅ 採用）**：定義 `prefix_hyphen_word` 作為新的 token 類型
+**Option 2 (✅ adopted)**: Define `prefix_hyphen_word` as new token type
 
-#### V5 實作
+#### V5 Implementation
 
 ```ruby
-# 新增規則 - 前置連字符詞
+# New rule - prefix hyphen word
 rule(:prefix_hyphen_word) do
   single_hyphen >> syllable
 end
 
-# Token 優先順序調整
+# Token priority adjustment
 rule(:token) do
-  prefix_hyphen_word.as(:word) |  # 🆕 優先匹配（更具體）
+  prefix_hyphen_word.as(:word) |  # 🆕 Priority match (more specific)
   hyphenated_word.as(:word) |
   number.as(:num) |
   punctuation.as(:punct)
 end
 ```
 
-#### 測試結果
+#### Test Results
 
-| 版本 | Parse 成功 | 成功率 | 改進 |
-|------|-----------|--------|------|
+| Version | Parse Success | Success Rate | Improvement |
+|---------|--------------|--------------|-------------|
 | V4 | 64,191/64,554 | 99.44% | - |
 | **V5** | **64,208/64,554** | **99.46%** | **+17 cases** |
 
-**Parse 錯誤**：223 → 205 (-18 個)
+**Parse errors**: 223 → 205 (-18)
 
-#### 關鍵優勢
+#### Key Advantages
 
-1. **保持 token 完整性**：
+1. **Maintains token integrity**:
    ```ruby
-   "(-pha)" → ["(", "-pha", ")"]  # ✓ -pha 作為單一 token
+   "(-pha)" → ["(", "-pha", ")"]  # ✓ -pha as single token
    ```
 
-2. **符合 CorporaArraySettable 邏輯** (Line 154-158)：
+2. **Matches CorporaArraySettable logic** (Lines 154-158):
    ```ruby
    if rword.match?(/^-/) && rword[1..].exclude?('-')
-     [rword]  # 前置連字符保持不拆
+     [rword]  # Prefix hyphen kept unsplit
    end
    ```
 
-3. **不破壞漢字對齊關係**：
+3. **Doesn't break Kanji alignment**:
    ```
    Roman: ["(", "-pha", ")"]  → 3 tokens
    Kanji: ['（', '脬', '）']   → 3 chars
-   ✓ 平衡！
+   ✓ Balanced!
    ```
 
-4. **符合台羅拼音語意**：
-   - `-pha` 是括號內的又音標記
-   - 對應單一漢字「脬」
-   - 保持 1:1 對應關係
+4. **Fits POJ semantics**:
+   - `-pha` is alternative pronunciation marker in parentheses
+   - Corresponds to single Kanji "脬"
+   - Maintains 1:1 correspondence
 
-#### 檔案位置
-- `experimental/roman_parser_pure.rb` - Line 74-79 (定義), 90-94 (使用)
+#### File Location
+- `experimental/roman_parser_pure.rb` - Lines 74-79 (definition), 90-94 (usage)
 
-#### 技術洞察
+#### Technical Insights
 
-這次修正展示了 Parser 設計的重要原則：
-- **優先級順序很重要**：更具體的規則放前面
-- **語意驅動設計**：根據語言結構定義 token 類型
-- **保持一致性**：與原始系統的處理邏輯對齊
+This fix demonstrates important Parser design principles:
+- **Priority order matters**: More specific rules come first
+- **Semantics-driven design**: Define token types based on language structure
+- **Maintain consistency**: Align with original system's processing logic
 
 ---
 
-### 2025-10-20: RomanParserPure V6 - 完整 Unicode 範圍支援 🌐
+### 2025-10-20: RomanParserPure V6 - Complete Unicode Range Support 🌐
 
-#### 問題分析
+#### Problem Analysis
 
-**Parse 失敗統計**：V5 仍有 205 個失敗案例（0.32%）
+**Parse failure statistics**: V5 still has 205 failed cases (0.32%)
 
-經過詳細的 Unicode 字元分析，發現失敗案例包含大量未支援的字元：
+Through detailed Unicode character analysis, found failed cases contain many unsupported characters:
 
-**主要問題類別**：
+**Main problem categories**:
 
-1. **CJK 括號與標點** (37 cases)
-   - 【】(U+3010-3011) - 未定義為 punctuation
+1. **CJK brackets and punctuation** (37 cases)
+   - 【】(U+3010-3011) - not defined as punctuation
    - 。(U+3002) - Ideographic period
 
-2. **全形 ASCII 變體** (32 cases)
+2. **Fullwidth ASCII variants** (32 cases)
    - ％(U+FF05), （(U+FF08), ）(U+FF09), －(U+FF0D)
-   - 只定義了 U+FF01-FF5E 但未完整測試
+   - Defined U+FF01-FF5E but not fully tested
 
-3. **注音符號** (35 cases)
-   - ㄅㄆㄇㄈ (U+3105-312F) - 完全不在支援範圍
+3. **Bopomofo** (35 cases)
+   - ㄅㄆㄇㄈ (U+3105-312F) - completely out of support range
    - ˇˋ (U+02C7, U+02CB) - Spacing Modifier Letters
 
-4. **特殊符號**
+4. **Special symbols**
    - ☐ (U+2610) - Ballot box
    - ‧ (U+2027) - Hyphenation point
    - ⁿ (U+207F) - Superscript n
    - % (U+0025) - ASCII percent
 
-#### 解決方案探索
+#### Solution Exploration
 
-**策略**：系統性擴展 Unicode 範圍，而非個別添加字元
+**Strategy**: Systematically expand Unicode ranges, not add individual characters
 
-#### V6 實作
+#### V6 Implementation
 
-**1. 擴展 letter 定義**：
+**1. Expanded letter definition**:
 
 ```ruby
-# 新增 modifier letter 和 superscript 支援
+# Add modifier letter and superscript support
 rule(:modifier_letter) { match['\u02C0-\u02FF'] }  # ˇ ˋ
 rule(:superscript) { match['\u2070-\u209F'] }      # ⁿ
 
@@ -764,35 +765,35 @@ rule(:letter) do
   unicode_letter |
   (ascii_letter >> combining_mark.repeat) |
   ascii_letter |
-  modifier_letter |  # 🆕 聲調符號
-  superscript        # 🆕 上標字元
+  modifier_letter |  # 🆕 Tone marks
+  superscript        # 🆕 Superscript chars
 end
 ```
 
-**2. 大幅擴展 punctuation 定義**：
+**2. Significantly expanded punctuation definition**:
 
 ```ruby
 rule(:punctuation) do
   str('...') | str('⋯⋯') | str('……') |
-  match[',.:;()!?？！/~、─…⋯\u2027%'] |  # 🆕 添加 % 和 ‧
+  match[',.:;()!?？！/~、─…⋯\u2027%'] |  # 🆕 Added % and ‧
   match["\"'\u201C\u201D\u2018\u2019"] |
-  match['\u3000-\u303F'] |  # 🆕 完整 CJK 符號範圍
-  match['\uFF01-\uFF5E'] |  # 🆕 全形 ASCII 變體
+  match['\u3000-\u303F'] |  # 🆕 Full CJK symbols range
+  match['\uFF01-\uFF5E'] |  # 🆕 Fullwidth ASCII variants
   match['\u2014'] |
-  match['\u2600-\u26FF']     # 🆕 雜項符號（包含 ☐）
+  match['\u2600-\u26FF']     # 🆕 Miscellaneous symbols (includes ☐)
 end
 ```
 
-**3. 新增特殊 token 類型**：
+**3. Added special token types**:
 
 ```ruby
-# Bopomofo 作為獨立 token
+# Bopomofo as independent token
 rule(:bopomofo) { match['\u3105-\u312F'].repeat(1) }
 
-# CJK 字元作為獨立 token（處理混合文本）
+# CJK characters as independent token (handles mixed text)
 rule(:cjk_char) { match['\u4E00-\u9FFF'] }
 
-# 更新 token 規則
+# Updated token rule
 rule(:token) do
   prefix_hyphen_word.as(:word) |
   hyphenated_word.as(:word) |
@@ -803,7 +804,7 @@ rule(:token) do
 end
 ```
 
-**4. 更新 Transform**：
+**4. Updated Transform**:
 
 ```ruby
 class Transform < Parslet::Transform
@@ -815,19 +816,19 @@ class Transform < Parslet::Transform
 end
 ```
 
-#### 測試結果
+#### Test Results
 
-| 版本 | Parse 成功 | 成功率 | Parse Errors | 改進 |
-|------|-----------|--------|--------------|------|
+| Version | Parse Success | Success Rate | Parse Errors | Improvement |
+|---------|--------------|--------------|--------------|-------------|
 | V5 | 64,208 | 99.46% | 205 (0.32%) | - |
 | **V6** | **64,476** | **99.88%** | **78 (0.12%)** | **+268** |
 
-**詳細統計**：
-- 總測試案例：64,554
-- V5 → V6 改進：+0.42 百分點
-- Parse errors 減少：205 → 78（減少 62%）
+**Detailed statistics**:
+- Total test cases: 64,554
+- V5 → V6 improvement: +0.42 percentage points
+- Parse errors reduced: 205 → 78 (62% reduction)
 
-#### 新增支援的 Unicode 範圍
+#### Newly Supported Unicode Ranges
 
 1. **U+02C0-02FF**: Spacing Modifier Letters
    - ˇ (U+02C7 - Caron)
@@ -836,19 +837,19 @@ end
 2. **U+2070-209F**: Superscripts and Subscripts
    - ⁿ (U+207F - Superscript latin small letter n)
 
-3. **U+3000-303F**: CJK Symbols and Punctuation (完整範圍)
+3. **U+3000-303F**: CJK Symbols and Punctuation (full range)
    - 。(U+3002 - Ideographic full stop)
    - 、(U+3001 - Ideographic comma)
    - 【(U+3010), 】(U+3011) - Black lenticular brackets
    - 　(U+3000 - Ideographic space)
 
-4. **U+3105-312F**: Bopomofo (作為獨立 token)
+4. **U+3105-312F**: Bopomofo (as independent token)
    - ㄅㄆㄇㄈ etc.
 
-5. **U+4E00-9FFF**: CJK Unified Ideographs (作為獨立 token)
-   - 處理混合文本中的漢字
+5. **U+4E00-9FFF**: CJK Unified Ideographs (as independent token)
+   - Handles Kanji in mixed text
 
-6. **U+FF01-FF5E**: Fullwidth ASCII Variants (完整測試)
+6. **U+FF01-FF5E**: Fullwidth ASCII Variants (full testing)
    - ％(U+FF05), （(U+FF08), ）(U+FF09), －(U+FF0D), ！(U+FF01)
 
 7. **U+2600-26FF**: Miscellaneous Symbols
@@ -858,68 +859,68 @@ end
 
 9. **U+2027**: Hyphenation point (‧)
 
-#### 關鍵優勢
+#### Key Advantages
 
-1. **涵蓋範圍完整**：
-   - 支援所有語料庫中出現的 Unicode 字元
-   - 系統性範圍定義，而非個別字元
+1. **Complete coverage**:
+   - Supports all Unicode characters appearing in corpus
+   - Systematic range definitions, not individual characters
 
-2. **架構清晰**：
-   - 按功能分類 Unicode 範圍
-   - 特殊字元作為獨立 token 類型
+2. **Clear architecture**:
+   - Unicode ranges categorized by function
+   - Special characters as independent token types
 
-3. **教學價值**：
-   - 展示如何處理多語言混合文本
-   - Unicode 範圍的系統性思考方式
+3. **Educational value**:
+   - Shows how to handle multilingual mixed text
+   - Systematic thinking about Unicode ranges
 
-4. **實用性**：
-   - 99.88% 成功率接近完美
-   - 剩餘 78 個案例為極端 edge cases
+4. **Practicality**:
+   - 99.88% success rate near perfect
+   - Remaining 78 cases are extreme edge cases
 
-#### 檔案位置
+#### File Location
 
-- `experimental/roman_parser_pure.rb` - Line 29-59 (Letter rules)
-- `experimental/roman_parser_pure.rb` - Line 50-59 (Punctuation rules)
-- `experimental/roman_parser_pure.rb` - Line 94-114 (Token rules)
+- `experimental/roman_parser_pure.rb` - Lines 29-59 (Letter rules)
+- `experimental/roman_parser_pure.rb` - Lines 50-59 (Punctuation rules)
+- `experimental/roman_parser_pure.rb` - Lines 94-114 (Token rules)
 
 ---
 
-### 2025-10-20: RomanParserPure V7 - 邊緣案例突破 🎯
+### 2025-10-20: RomanParserPure V7 - Edge Case Breakthrough 🎯
 
-#### 背景
+#### Background
 
-V6 達到 99.88% (64,476/64,554) 成功率後，剩餘 78 個失敗案例（0.12%）。用戶要求：「那我們來試著解決剩下那些 edge case 吧」
+After V6 reached 99.88% (64,476/64,554) success rate, 78 failed cases (0.12%) remained. User requested: "Let's try to solve those remaining edge cases"
 
-#### 失敗案例分析
+#### Failed Case Analysis
 
-對 78 個失敗案例進行詳細分析，發現明確的模式：
+Detailed analysis of 78 failed cases found clear patterns:
 
-**主要問題類別**：
+**Main problem categories**:
 
 1. **Double-hyphen after quotes (59 cases - 76%)**
    - Pattern: `"phrase"--word`
    - Example: `"tsia̍h-kín lòng-phuà uánn"--ooh!`
-   - 問題：引號後直接接 `--` 再接詞，中間沒有空格
-   - 原因：Parser 將 `"` 視為獨立 token，無法處理緊鄰的 `--word`
+   - Issue: Quote followed directly by `--` then word, no space between
+   - Cause: Parser treats `"` as independent token, can't handle adjacent `--word`
 
 2. **Underscore placeholders (9 cases - 11.5%)**
    - Pattern: `lán_`
-   - Meaning: `咱__`（表示文本空白位置）
-   - 問題：`_` 不屬於任何已定義的 token 類型
-   - 原因：Underscore 未納入 letter、punctuation 或其他規則
+   - Meaning: `咱__` (indicates blank position in text)
+   - Issue: `_` doesn't belong to any defined token type
+   - Cause: Underscore not included in letter, punctuation or other rules
 
-3. **其他特殊符號**
+3. **Other special characters**
    - Angle brackets: `< lâng kah sai >` (1 case)
    - Leading spaces in quotes: `" tāi it kok-bûn "` (5 cases)
    - Special emoticons: `^Q^` (1 case)
    - Zero-width space: U+200B (1 case)
    - Combining character: U+0358 (2 cases)
 
-#### V7 實作策略
+#### V7 Implementation Strategy
 
-**設計原則**：針對高頻模式（76% + 11.5% = 87.5%）設計專用規則
+**Design principle**: Target high-frequency patterns (76% + 11.5% = 87.5%) with dedicated rules
 
-**1. 新增 Double-hyphen word 規則**：
+**1. Added double-hyphen word rule**:
 
 ```ruby
 # Double-hyphen word: starts with double hyphen
@@ -934,12 +935,12 @@ rule(:double_hyphen_word) do
 end
 ```
 
-**關鍵點**：
-- 允許 `--` 作為詞的開頭
-- 後面可接多個音節（如 `--kuè-khì`）
-- 可以有尾隨連字符
+**Key points**:
+- Allows `--` as word beginning
+- Can be followed by multiple syllables (e.g., `--kuè-khì`)
+- Can have trailing hyphen
 
-**2. 新增 Underscore placeholder 規則**：
+**2. Added underscore placeholder rule**:
 
 ```ruby
 # Underscore (used as placeholder)
@@ -952,12 +953,12 @@ rule(:underscore_word) do
 end
 ```
 
-**關鍵點**：
-- 將 `underscore` 定義為基礎 token
-- `underscore_word` 處理 `word_` 形式
-- 保持為單一 token，不分割
+**Key points**:
+- Define `underscore` as basic token
+- `underscore_word` handles `word_` form
+- Keep as single token, don't split
 
-**3. 新增 Angle brackets 支援**：
+**3. Added angle brackets support**:
 
 ```ruby
 rule(:punctuation) do
@@ -967,7 +968,7 @@ rule(:punctuation) do
 end
 ```
 
-**4. 調整 Token 優先順序**：
+**4. Adjusted token priority**:
 
 ```ruby
 rule(:token) do
@@ -982,15 +983,15 @@ rule(:token) do
 end
 ```
 
-**優先順序邏輯**：
-- `double_hyphen_word` 最具體（`--word`）→ 優先嘗試
-- `prefix_hyphen_word` 次之（`-word`）
-- `underscore_word` 特定模式（`word_`）
-- `hyphenated_word` 最通用（`word-word`）→ 最後嘗試
+**Priority logic**:
+- `double_hyphen_word` most specific (`--word`) → Try first
+- `prefix_hyphen_word` next (`-word`)
+- `underscore_word` specific pattern (`word_`)
+- `hyphenated_word` most general (`word-word`) → Try last
 
-#### 測試結果
+#### Test Results
 
-**Edge cases 測試 (7/7)**：
+**Edge cases test (7/7)**:
 
 ```ruby
 [1] ✓ "tsia̍h-kín lòng-phuà uánn"--ooh!
@@ -1002,185 +1003,185 @@ end
 [7] ✓ < lâng kah sai >
 ```
 
-**完整資料集測試**：
+**Full dataset test**:
 
-| 指標 | V6 | V7 | 改進 |
-|------|----|----|------|
-| 總筆數 | 64,554 | 64,554 | - |
-| Parse 成功 | 64,476 | **64,548** | **+72** |
-| 成功率 | 99.88% | **99.99%** | **+0.11%** |
-| Parse 錯誤 | 78 | **6** | **-92.3%** |
-| 錯誤率 | 0.12% | **0.01%** | **-91.7%** |
+| Metric | V6 | V7 | Improvement |
+|--------|----|----|-------------|
+| Total | 64,554 | 64,554 | - |
+| Parse Success | 64,476 | **64,548** | **+72** |
+| Success Rate | 99.88% | **99.99%** | **+0.11%** |
+| Parse Errors | 78 | **6** | **-92.3%** |
+| Error Rate | 0.12% | **0.01%** | **-91.7%** |
 
-#### 剩餘 6 個極端邊緣案例
+#### Remaining 6 Extreme Edge Cases
 
-**詳細分析**：
+**Detailed analysis**:
 
-1. **[96824]** - ASCII hyphen vs Em dash 混用
+1. **[96824]** - ASCII hyphen vs Em dash mixing
    - `lán ê bó-gú - Tâi-uân-uē`
-   - 使用 U+002D (hyphen) 而非 U+2014 (em dash)
-   - 問題：空格 + 單一 hyphen + 空格 ≠ 有效 token
+   - Uses U+002D (hyphen) instead of U+2014 (em dash)
+   - Issue: space + single hyphen + space ≠ valid token
 
 2. **[101361]** - Zero-width space (U+200B)
    - `​ Tâi-uân gí-giân`
-   - 開頭有不可見字元
-   - 問題：資料清理問題，非 Parser 能力範圍
+   - Invisible character at beginning
+   - Issue: Data cleaning problem, beyond Parser capability
 
 3-4. **[101568, 101572]** - Combining character U+0358
    - `khò͘` (Combining Dot Above Right)
-   - 需要擴展 `combining_mark` 範圍至 U+0358
-   - 問題：當前只支援 U+0300-036F
+   - Need to expand `combining_mark` range to U+0358
+   - Issue: Currently only supports U+0300-036F
 
-5. **[106448]** - 逗號後無空格
+5. **[106448]** - Comma without space after
    - `kuan-tsiòng,mā`
-   - 違反 POJ 標準格式（標點後應有空格）
-   - 問題：資料格式問題
+   - Violates POJ standard format (punctuation should have space after)
+   - Issue: Data format problem
 
-6. **[116361]** - 特殊表情符號
-   - `^Q^`（笑臉）
-   - 非 Unicode 標準表情，屬於 ASCII art
-   - 問題：不符合語言學標準
+6. **[116361]** - Special emoticon
+   - `^Q^` (smiley face)
+   - Not Unicode standard emoji, belongs to ASCII art
+   - Issue: Doesn't conform to linguistic standards
 
-**分類**：
-- **資料品質問題** (3 個)：Zero-width space、逗號後無空格、表情符號
-- **格式問題** (1 個)：Hyphen vs Em dash 混用
-- **可修正問題** (2 個)：Combining mark 範圍擴展
+**Classification**:
+- **Data quality issues** (3): Zero-width space, comma without space, emoticon
+- **Format issues** (1): Hyphen vs Em dash mixing
+- **Fixable issues** (2): Combining mark range expansion
 
-#### 技術成果
+#### Technical Achievements
 
-**1. 突破性成功率**：
-- ✅ 99.99% 接近完美
-- ✅ 錯誤率降至 0.01%
-- ✅ 可用於生產環境
+**1. Breakthrough success rate**:
+- ✅ 99.99% near perfect
+- ✅ Error rate down to 0.01%
+- ✅ Production-ready
 
-**2. 問題解決效率**：
-- 解決 72/78 個案例（92.3%）
-- 僅 3 個步驟（double-hyphen, underscore, angle brackets）
-- 針對性強，避免過度工程
+**2. Problem-solving efficiency**:
+- Solved 72/78 cases (92.3%)
+- Only 3 steps (double-hyphen, underscore, angle brackets)
+- Targeted, avoiding over-engineering
 
-**3. 架構優雅性**：
-- 規則優先順序清晰
-- 特殊模式與通用模式分離
-- 易於理解和維護
+**3. Architectural elegance**:
+- Clear rule priority order
+- Special patterns separated from general patterns
+- Easy to understand and maintain
 
-**4. 教學價值**：
-- 展示如何進行邊緣案例分析
-- 示範 80/20 法則（解決 87.5% 高頻問題）
-- 說明何時停止優化（剩餘 0.01% 為資料問題）
+**4. Educational value**:
+- Shows how to perform edge case analysis
+- Demonstrates 80/20 principle (solving 87.5% high-frequency problems)
+- Explains when to stop optimizing (remaining 0.01% are data issues)
 
-#### 關鍵設計決策
+#### Key Design Decisions
 
-**Q: 為什麼 `double_hyphen_word` 要放在最前面？**
+**Q: Why put `double_hyphen_word` first?**
 
-A: Parslet PEG parser 使用「有序選擇」：
-- `--word` 更具體 → 優先匹配
-- 若放在 `hyphenated_word` 後，`--` 會被視為兩個 `-`
-- 具體規則優先，避免錯誤匹配
+A: Parslet PEG parser uses "ordered choice":
+- `--word` more specific → Match first
+- If placed after `hyphenated_word`, `--` would be seen as two `-`
+- Specific rules first, avoid wrong matches
 
-**Q: 為什麼不繼續處理剩餘 6 個案例？**
+**Q: Why not continue with remaining 6 cases?**
 
-A: 剩餘案例屬於：
-1. **資料品質問題**（50%）→ 應在資料清理階段修正
-2. **格式標準問題**（17%）→ 屬於內容錯誤，非 Parser 責任
-3. **可修正但極罕見**（33%）→ Cost-benefit 不合理
+A: Remaining cases are:
+1. **Data quality issues** (50%) → Should fix at data cleaning stage
+2. **Format standard issues** (17%) → Content errors, not Parser responsibility
+3. **Fixable but rare** (33%) → Cost-benefit unreasonable
 
-**投資報酬率**：
-- V6 → V7: 3 個規則解決 72 個案例（24:1）
-- V7 → V8（假設）：需要 3+ 規則解決 6 個案例（0.5:1）
-- 結論：99.99% 已達工程平衡點
+**ROI**:
+- V6 → V7: 3 rules solve 72 cases (24:1)
+- V7 → V8 (hypothetical): Need 3+ rules for 6 cases (0.5:1)
+- Conclusion: 99.99% reached engineering balance point
 
-#### 檔案位置
+#### File Location
 
-- `experimental/roman_parser_pure.rb` - Line 50-51 (Underscore definition)
-- `experimental/roman_parser_pure.rb` - Line 95-110 (New word rules)
-- `experimental/roman_parser_pure.rb` - Line 127-137 (Token priority)
-- `test_v7_full.rb` - 完整測試腳本
-- `test_v7_edge_cases.rb` - 邊緣案例測試
-- `analyze_remaining_6.rb` - 剩餘案例分析
+- `experimental/roman_parser_pure.rb` - Lines 50-51 (Underscore definition)
+- `experimental/roman_parser_pure.rb` - Lines 95-110 (New word rules)
+- `experimental/roman_parser_pure.rb` - Lines 127-137 (Token priority)
+- `test_v7_full.rb` - Full test script
+- `test_v7_edge_cases.rb` - Edge case test
+- `analyze_remaining_6.rb` - Remaining case analysis
 
-#### 版本比較總結
+#### Version Comparison Summary
 
-| 版本 | 主要改進 | 成功率 | 錯誤數 |
-|------|---------|--------|--------|
+| Version | Main Improvement | Success Rate | Errors |
+|---------|-----------------|--------------|--------|
 | V5 | Prefix hyphen | 99.46% | 205 |
 | V6 | Unicode ranges | 99.88% | 78 |
 | **V7** | **Edge cases** | **99.99%** | **6** |
 
-**總改進**（V5 → V7）：
-- 成功率：+0.53%
-- 錯誤減少：205 → 6（-97.1%）
-- 新增規則：3 個（double-hyphen, underscore, angle brackets）
+**Total improvement** (V5 → V7):
+- Success rate: +0.53%
+- Error reduction: 205 → 6 (-97.1%)
+- New rules: 3 (double-hyphen, underscore, angle brackets)
 
 ---
 
-### 2025-10-20: RomanParserPure V8 - 100% 完美解析 🎯🏆
+### 2025-10-20: RomanParserPure V8 - 100% Perfect Parsing 🎯🏆
 
-#### 背景與挑戰
+#### Background and Challenge
 
-V7 達到 99.99% (64,548/64,554) 後，剩餘 6 個案例（0.01%）被標記為「資料品質問題」。
+After V7 reached 99.99% (64,548/64,554), 6 remaining cases (0.01%) were marked as "data quality issues".
 
-用戶提出挑戰：**「剩下這6筆還有可能處理嗎？id IN (96824, 101361, 101568, 101572, 106448, 116361)」**
+User challenged: **"Is it still possible to handle these last 6? id IN (96824, 101361, 101568, 101572, 106448, 116361)"**
 
-#### 可行性分析
+#### Feasibility Analysis
 
-對 6 個案例進行詳細技術可行性評估：
+Detailed technical feasibility assessment of 6 cases:
 
-**案例清單與分析**：
+**Case list and analysis**:
 
 1. **[96824]** - `tshui-sak kap thui-kóng lán ê bó-gú - Tâi-uân-uē.`
    - Pattern: `bó-gú - Tâi-uân-uē` (space-hyphen-space)
-   - 問題：單獨 `-` 無法匹配任何 token 規則
-   - 可行性：✅ Easy - 將 `-` 加入 punctuation
+   - Issue: Isolated `-` can't match any token rule
+   - Feasibility: ✅ Easy - Add `-` to punctuation
 
 2. **[101361]** - `​ Tâi-uân gí-giân kàu-io̍k ê tshiò-khue`
-   - Pattern: Zero-width space (U+200B) 在句首
-   - 問題：不可見字元，Parser 無法處理
-   - 可行性：✅ Easy - 將 U+200B 加入 `space?`
+   - Pattern: Zero-width space (U+200B) at beginning
+   - Issue: Invisible character, Parser can't handle
+   - Feasibility: ✅ Easy - Add U+200B to `space?`
 
 3. **[101568]** - `" tāi it kok-bûn " sī ... khò͘,`
 4. **[101572]** - `lóng tsiām-tsiām ... khò͘,`
-   - Pattern: `khò͘` 含 Combining Dot Above Right (U+0358)
-   - 問題：U+0358 不在 U+0300-036F 範圍
-   - 可行性：✅ Easy - 擴展 combining_mark + 修正 letter 順序
+   - Pattern: `khò͘` contains Combining Dot Above Right (U+0358)
+   - Issue: U+0358 not in U+0300-036F range
+   - Feasibility: ✅ Easy - Expand combining_mark + fix letter order
 
 5. **[106448]** - `Sî-kan ... "Kong-sī + tshit" pênn-tâi,`
-   - Pattern: 包含 `+` 號
-   - 問題：`+` 未定義為 punctuation
-   - 可行性：✅ Easy - 將 `+` 加入 punctuation
+   - Pattern: Contains `+` sign
+   - Issue: `+` not defined as punctuation
+   - Feasibility: ✅ Easy - Add `+` to punctuation
 
 6. **[116361]** - `tshut-khì ... gē-su̍t-ka--neh!^Q^`
-   - Pattern: ASCII art `^Q^` 笑臉
-   - 問題：`^` 未定義
-   - 可行性：✅ Easy - 將 `^` 加入 punctuation
+   - Pattern: ASCII art `^Q^` smiley
+   - Issue: `^` not defined
+   - Feasibility: ✅ Easy - Add `^` to punctuation
 
-**結論：所有 6 個案例都是技術上可行的！**
+**Conclusion: All 6 cases are technically feasible!**
 
-#### V8 實作
+#### V8 Implementation
 
-**1. Zero-width space 支援**：
+**1. Zero-width space support**:
 
 ```ruby
-# 新增 zero-width space 定義
+# Add zero-width space definition
 rule(:zero_width_space) { match['\u200B'] }
 
-# 將其納入 space? 規則
+# Include in space? rule
 rule(:space?) { (zero_width_space | match['\s']).repeat }
 ```
 
-**關鍵點**：
-- U+200B 是合法的 Unicode 字元
-- 常見於複製貼上文本時產生
-- 應視為空白字元的一種
+**Key points**:
+- U+200B is legal Unicode character
+- Common in copy-paste text
+- Should be treated as type of whitespace
 
-**2. Combining character U+0358 支援**：
+**2. Combining character U+0358 support**:
 
 ```ruby
-# 擴展 combining_mark 範圍
+# Expand combining_mark range
 rule(:combining_mark) { match['\u0300-\u036F'] | match['\u0358'] }
 
-# 修正 letter 定義順序
+# Fix letter definition order
 rule(:letter) do
-  (unicode_letter >> combining_mark.repeat) |  # 🆕 Unicode letter 可附加 combining
+  (unicode_letter >> combining_mark.repeat) |  # 🆕 Unicode letter can attach combining
   (ascii_letter >> combining_mark.repeat) |
   unicode_letter |
   ascii_letter |
@@ -1189,73 +1190,73 @@ rule(:letter) do
 end
 ```
 
-**技術細節**：
+**Technical details**:
 - `khò͘` = `k` + `h` + `ò` (U+00F2) + `͘` (U+0358)
-- `ò` 本身是 precomposed Unicode letter
-- 需要允許 `unicode_letter` 後接 `combining_mark`
-- 原本只支援 `ascii_letter` 後接 combining
+- `ò` itself is precomposed Unicode letter
+- Need to allow `unicode_letter` followed by `combining_mark`
+- Originally only supported `ascii_letter` followed by combining
 
-**Debug 過程**：
+**Debug process**:
 ```ruby
-# 測試發現
+# Test findings
 "khò͘"[2] # => "ò" (U+00F2) - Unicode letter, not ASCII!
 "khò͘"[3] # => "͘" (U+0358) - Combining mark
 
-# 原本的 letter 定義只處理 ASCII + combining
+# Original letter definition only handled ASCII + combining
 rule(:letter) do
   unicode_letter |
-  (ascii_letter >> combining_mark.repeat) |  # ✗ "ò" 不是 ASCII
+  (ascii_letter >> combining_mark.repeat) |  # ✗ "ò" is not ASCII
   ascii_letter
 end
 
-# 修正後：Unicode letter 也可以附加 combining
+# Fixed: Unicode letter can also attach combining
 rule(:letter) do
-  (unicode_letter >> combining_mark.repeat) |  # ✓ "ò" 可以接 U+0358
+  (unicode_letter >> combining_mark.repeat) |  # ✓ "ò" can attach U+0358
   (ascii_letter >> combining_mark.repeat) |
   # ...
 end
 ```
 
-**3. 特殊標點符號支援**：
+**3. Special punctuation support**:
 
 ```ruby
 rule(:punctuation) do
-  str(' - ') |  # 保留（雖然不會被匹配）
+  str(' - ') |  # Kept (though won't be matched)
   str('...') | str('⋯⋯') | str('……') |
-  match[',.:;()!?？！/~、─…⋯\u2027%<>^+-'] |  # 🆕 添加 ^, +, -
+  match[',.:;()!?？！/~、─…⋯\u2027%<>^+-'] |  # 🆕 Added ^, +, -
   # ... rest
 end
 ```
 
-**關鍵決策**：
-- `^` - ASCII art emoticon 常用字元
-- `+` - 數學表達式必要符號
-- `-` - 允許單獨 hyphen 作為 em dash 替代
+**Key decisions**:
+- `^` - Common character in ASCII art emoticons
+- `+` - Necessary symbol for mathematical expressions
+- `-` - Allow isolated hyphen as em dash substitute
 
-**Token 優先順序影響**：
+**Token priority impact**:
 ```ruby
 rule(:token) do
-  double_hyphen_word.as(:word) |  # "--word" 優先
-  prefix_hyphen_word.as(:word) |  # "-word" 次之
+  double_hyphen_word.as(:word) |  # "--word" first
+  prefix_hyphen_word.as(:word) |  # "-word" second
   underscore_word.as(:word) |     # "word_"
   hyphenated_word.as(:word) |     # "word-word"
   number.as(:num) |
   bopomofo.as(:bopomofo) |
   cjk_char.as(:cjk) |
-  punctuation.as(:punct)          # 最後嘗試 "-" 作為 punctuation
+  punctuation.as(:punct)          # Finally try "-" as punctuation
 end
 ```
 
-**為何 `-` 可以同時存在於 word 和 punctuation？**
-- PEG parser 使用「有序選擇」（ordered choice）
-- 先嘗試所有 word 相關規則
-- 若都失敗，才嘗試 punctuation
-- 因此 `bó-gú` 會匹配 `hyphenated_word`
-- 但 ` - ` (單獨) 會匹配 `punctuation`
+**Why can `-` exist in both word and punctuation?**
+- PEG parser uses "ordered choice"
+- Try all word-related rules first
+- Only try punctuation if all fail
+- Therefore `bó-gú` matches `hyphenated_word`
+- But ` - ` (isolated) matches `punctuation`
 
-#### 測試結果
+#### Test Results
 
-**6 個目標案例測試 (6/6)**：
+**6 target cases test (6/6)**:
 
 ```
 ✓ [ID: 96824] bó-gú - Tâi-uân-uē
@@ -1266,95 +1267,95 @@ end
 ✓ [ID: 116361] ... ^Q^
 ```
 
-**完整資料集測試 (64,554 筆)**：
+**Full dataset test (64,554 entries)**:
 
-| 指標 | V7 | V8 | 改進 |
-|------|----|----|------|
-| 總筆數 | 64,554 | 64,554 | - |
-| Parse 成功 | 64,548 | **64,554** | **+6** |
-| 成功率 | 99.99% | **100.00%** | **+0.01%** |
-| Parse 錯誤 | 6 | **0** | **-100%** |
-| 錯誤率 | 0.01% | **0.00%** | **-100%** |
+| Metric | V7 | V8 | Improvement |
+|--------|----|----|-------------|
+| Total | 64,554 | 64,554 | - |
+| Parse Success | 64,548 | **64,554** | **+6** |
+| Success Rate | 99.99% | **100.00%** | **+0.01%** |
+| Parse Errors | 6 | **0** | **-100%** |
+| Error Rate | 0.01% | **0.00%** | **-100%** |
 
-🎉 **達成 100% 完美解析！**
+🎉 **Achieved 100% Perfect Parsing!**
 
-#### 技術成果
+#### Technical Achievements
 
-**1. 完美準確度**：
-- ✅ 64,554/64,554 全部成功
-- ✅ 零錯誤率
-- ✅ 可用於生產環境的完美 Parser
+**1. Perfect accuracy**:
+- ✅ 64,554/64,554 all successful
+- ✅ Zero error rate
+- ✅ Production-ready perfect Parser
 
-**2. 證明「資料品質問題」實為語言現象**：
-- Zero-width space → 文本編輯常見副產品
-- U+0358 → 合法的 Unicode combining character
-- 單獨 hyphen → 打字輸入的 em dash 替代
-- Plus sign → 數學/混合語言表達必需
-- Caret → ASCII art 表情符號
+**2. Proved "data quality issues" are actually linguistic phenomena**:
+- Zero-width space → Common byproduct of text editing
+- U+0358 → Legal Unicode combining character
+- Isolated hyphen → Em dash substitute in typing input
+- Plus sign → Necessary for mathematical/mixed language expressions
+- Caret → ASCII art emoticon
 
-**3. 架構優雅性維持**：
-- 只增加 3 個小改動（zero_width_space, combining U+0358, punctuation 擴展）
-- 沒有破壞現有規則
-- Token 優先順序邏輯清晰
+**3. Maintained architectural elegance**:
+- Only 3 small changes (zero_width_space, combining U+0358, punctuation expansion)
+- Didn't break existing rules
+- Clear token priority logic
 
-**4. 教學價值**：
-- 展示如何將「不可能」變為「完美」
-- 說明 PEG parser 的有序選擇特性
-- 示範 Unicode 字元分析的重要性
+**4. Educational value**:
+- Shows how to turn "impossible" into "perfect"
+- Explains PEG parser's ordered choice feature
+- Demonstrates importance of Unicode character analysis
 
-#### 關鍵設計洞察
+#### Key Design Insights
 
-**Q: 為什麼 V7 認為是「資料品質問題」？**
+**Q: Why did V7 consider them "data quality issues"?**
 
-A: 工程上的謹慎判斷：
-- V7 已達 99.99%，認為剩餘 0.01% 不值得投入
-- 初步判斷這些是異常字元（zero-width space, 表情符號）
-- 符合 80/20 法則的工程決策
+A: Prudent engineering judgment:
+- V7 already at 99.99%, deemed remaining 0.01% not worth investment
+- Initial assessment: abnormal characters (zero-width space, emoticons)
+- Aligns with 80/20 principle engineering decision
 
-**Q: V8 證明了什麼？**
+**Q: What does V8 prove?**
 
-A: 完美主義的價值：
-- 每個「邊緣案例」都有其語言學理由
-- Zero-width space 不是錯誤，是文本編輯現實
-- U+0358 不是異常，是 POJ 正當聲調標記方式
-- 單獨 hyphen 不是格式問題，是口語化輸入習慣
+A: Value of perfectionism:
+- Every "edge case" has linguistic justification
+- Zero-width space not error, text editing reality
+- U+0358 not abnormal, legitimate POJ tone marking method
+- Isolated hyphen not format issue, colloquial input habit
 
-**Q: 這對 RubyWorld Conference 2025 演講的意義？**
+**Q: What does this mean for RubyWorld Conference 2025 presentation?**
 
-A: 完美的故事結局：
-- V1 (98.34%) → V8 (100.00%) 的完整進化
-- 展示 Compiler 理論如何應用於自然語言
-- 證明 Ruby 的 Parslet gem 能達到完美解析
-- **「從無人競標到完美解析」的勵志故事**
+A: Perfect story ending:
+- V1 (98.34%) → V8 (100.00%) complete evolution
+- Shows how Compiler theory applies to NLP
+- Proves Ruby's Parslet gem can achieve perfect parsing
+- **"From no bidders to perfect parsing" inspiring story**
 
-#### 檔案位置
+#### File Location
 
-- `experimental/roman_parser_pure.rb` - Line 26-28 (Zero-width space)
+- `experimental/roman_parser_pure.rb` - Lines 26-28 (Zero-width space)
 - `experimental/roman_parser_pure.rb` - Line 34 (Combining U+0358)
-- `experimental/roman_parser_pure.rb` - Line 39-46 (Letter 順序修正)
-- `experimental/roman_parser_pure.rb` - Line 59 (Punctuation 擴展)
-- `test_v8_final_6.rb` - 6 個目標案例測試
-- `test_v8_full.rb` - 完整資料集測試
-- `analyze_final_6_feasibility.rb` - 可行性分析腳本
+- `experimental/roman_parser_pure.rb` - Lines 39-46 (Letter order fix)
+- `experimental/roman_parser_pure.rb` - Line 59 (Punctuation expansion)
+- `test_v8_final_6.rb` - 6 target case tests
+- `test_v8_full.rb` - Full dataset test
+- `analyze_final_6_feasibility.rb` - Feasibility analysis script
 
-#### 版本比較總結
+#### Version Comparison Summary
 
-| 版本 | 主要改進 | 成功率 | 錯誤數 | 錯誤率 |
-|------|---------|--------|--------|--------|
+| Version | Main Improvement | Success Rate | Errors | Error Rate |
+|---------|-----------------|--------------|--------|-----------|
 | V5 | Prefix hyphen | 99.46% | 205 | 0.32% |
 | V6 | Unicode ranges | 99.88% | 78 | 0.12% |
 | V7 | Edge cases | 99.99% | 6 | 0.01% |
 | **V8** | **Perfect parsing** | **100.00%** | **0** | **0.00%** |
 
-**總改進**（V5 → V8）：
-- 成功率：+0.54% (99.46% → 100.00%)
-- 錯誤減少：205 → 0（-100%）
-- 新增規則：6 個（double-hyphen, underscore, angle brackets, zero-width, combining U+0358, isolated punctuation）
+**Total improvement** (V5 → V8):
+- Success rate: +0.54% (99.46% → 100.00%)
+- Error reduction: 205 → 0 (-100%)
+- New rules: 6 (double-hyphen, underscore, angle brackets, zero-width, combining U+0358, isolated punctuation)
 
-**開發時間軸**：
-- V5 → V6: 解決 62% 錯誤（205 → 78）
-- V6 → V7: 解決 92.3% 錯誤（78 → 6）
-- V7 → V8: 解決最後 100% 錯誤（6 → 0）
+**Development timeline**:
+- V5 → V6: Solved 62% errors (205 → 78)
+- V6 → V7: Solved 92.3% errors (78 → 6)
+- V7 → V8: Solved final 100% errors (6 → 0)
 
 ---
 
