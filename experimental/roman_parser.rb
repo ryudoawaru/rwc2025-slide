@@ -28,69 +28,14 @@ module Experimental
   WASHING_PATTERNS = YAML.load_file("#{File.dirname(__FILE__)}/roman_gsub_patterns.yml", permitted_classes: [Regexp])
   class RomanParser < Parslet::Parser
     # ============================================================
-    # Phase 1: Lexical Analysis - Character-level Rules
+    # Phase 1: Lexical Analysis - Accept entire input
     # ============================================================
+    # Strategy: Parse the entire string as a single text node
+    # Then apply washing patterns in Transform phase (Phase 2+3)
 
-    # Basic whitespace
-    rule(:space) { str(' ') | str('\t') }
-    rule(:spaces) { space.repeat(1) }
-    rule(:spaces?) { space.repeat }
+    root(:text)
 
-    # Roman alphabetic character (a-z, A-Z)
-    rule(:letter) { match['a-zA-Z'] }
-
-    # Digit (0-9)
-    rule(:digit) { match['0-9'] }
-
-    # Hyphen
-    rule(:hyphen) { str('-') }
-    rule(:double_hyphen) { str('--') }
-
-    # Punctuation that needs to be separated
-    rule(:punctuation) do
-      str(',') | str('.') | str('!') | str('?') |
-      str(';') | str(':') | str('"') | str("'") |
-      str('(') | str(')') | str('[') | str(']') |
-      str('「') | str('」') | str('『') | str('』') |
-      str('─') | str('─') | str('…') | str('⋯')
-    end
-
-    # Roman word: letters with optional hyphens
-    # Examples: "suà-lo̍h", "lâi-khuànn", "Sin-tik-tshī"
-    # Note: We handle any Unicode characters that might appear
-    rule(:roman_word) do
-      (
-        letter.repeat(1) >>
-        (hyphen.absent? >> match['\u0300-\u036F']).repeat >> # Combining diacriticals
-        (hyphen >> letter.repeat(1) >> (hyphen.absent? >> match['\u0300-\u036F']).repeat).repeat
-      ).as(:word)
-    end
-
-    # Standalone number
-    rule(:number) do
-      digit.repeat(1).as(:number)
-    end
-
-    # Token: a word, number, or punctuation
-    rule(:token) do
-      roman_word | number | punctuation.as(:punct)
-    end
-
-    # ============================================================
-    # Phase 2: Syntax Analysis - Sentence Structure
-    # ============================================================
-
-    # Sentence: sequence of tokens separated by spaces
-    rule(:sentence) do
-      (
-        spaces? >>
-        token >>
-        (spaces >> token).repeat >>
-        spaces?
-      ).as(:sentence)
-    end
-
-    root(:sentence)
+    rule(:text) { any.repeat.as(:raw_text) }
 
     # ============================================================
     # Phase 3: Semantic Analysis - AST Transformation

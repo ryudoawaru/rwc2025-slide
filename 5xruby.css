@@ -556,6 +556,10 @@ section.scale-65 {
   font-size: 0.65em;
 }
 
+section.scale-60 {
+  font-size: 0.60em;
+}
+
 /* Card-style columns layout */
 /* h1 stays outside, columns container uses grid */
 
