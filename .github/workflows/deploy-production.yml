@@ -1,0 +1,100 @@
+name: Deploy to Production (rwc2025.ryudo.tw)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.md'
+      - '5xruby.css'
+      - 'images/**'
+      - '.github/workflows/deploy-production.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages-production"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Marp CLI
+        run: npm install -g @marp-team/marp-cli
+
+      - name: Generate HTML from slides
+        run: |
+          mkdir -p output
+
+          # Generate main presentation
+          npx @marp-team/marp-cli rubyworld-2025-taigi-parser.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o output/index.html
+
+          # Copy assets to output directory
+          if [ -d "images" ]; then
+            cp -r images output/
+          fi
+
+          if [ -f "5xruby.css" ]; then
+            cp 5xruby.css output/
+          fi
+
+          # Create a simple listing page for other formats
+          cat > output/README.md << 'EOF'
+          # RubyWorld Conference 2025 - Slides
+
+          ## Available Formats
+
+          - [HTML Slides](index.html) - Main presentation
+          - [Markdown Source](https://github.com/5xruby/rwc2025-slide/blob/main/rubyworld-2025-taigi-parser.md)
+
+          ## About
+
+          This presentation demonstrates how to apply Compiler Theory to Natural Language Processing
+          through a pure parser-based implementation for Taiwanese Pe̍h-ōe-jī (POJ) romanization.
+
+          **Achievement**: 🏆 100% parsing accuracy on 64,554 real-world corpus entries
+
+          ---
+
+          © 2025 5xRuby CO., LTD
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Deployment summary
+        run: |
+          echo "🚀 Production deployment completed!"
+          echo "📍 URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "📍 Custom domain: https://rwc2025.ryudo.tw (if configured)"
+          echo "🔧 Commit: ${{ github.sha }}"
