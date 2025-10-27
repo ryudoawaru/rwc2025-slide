@@ -43,12 +43,19 @@ jobs:
         run: |
           mkdir -p output
 
-          # Generate main presentation
-          npx @marp-team/marp-cli rubyworld-2025-taigi-parser.md \
+          # Generate Japanese version (default/main)
+          npx @marp-team/marp-cli slide-ja.md \
             --theme 5xruby.css \
             --html \
             --allow-local-files \
             -o output/index.html
+
+          # Generate English version
+          npx @marp-team/marp-cli slide-en.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o output/slide-en.html
 
           # Copy assets to output directory
           if [ -d "images" ]; then
@@ -63,10 +70,12 @@ jobs:
           cat > output/README.md << 'EOF'
           # RubyWorld Conference 2025 - Slides
 
-          ## Available Formats
+          ## Available Languages
 
-          - [HTML Slides](index.html) - Main presentation
-          - [Markdown Source](https://github.com/5xruby/rwc2025-slide/blob/main/rubyworld-2025-taigi-parser.md)
+          - [日本語版 (Japanese)](index.html) - Main presentation (Default)
+          - [English Version](slide-en.html) - English version
+          - [Markdown Source (JA)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
+          - [Markdown Source (EN)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-en.md)
 
           ## About
 
