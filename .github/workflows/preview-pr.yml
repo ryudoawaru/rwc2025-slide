@@ -33,12 +33,19 @@ jobs:
         run: |
           mkdir -p preview
 
-          # Generate slides
-          npx @marp-team/marp-cli rubyworld-2025-taigi-parser.md \
+          # Generate Japanese version (default)
+          npx @marp-team/marp-cli slide-ja.md \
             --theme 5xruby.css \
             --html \
             --allow-local-files \
             -o preview/index.html
+
+          # Generate English version
+          npx @marp-team/marp-cli slide-en.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o preview/slide-en.html
 
           # Copy assets
           if [ -d "images" ]; then
@@ -77,7 +84,9 @@ jobs:
             - **PR**: #${prNumber}
             - **Branch**: \`${{ github.head_ref }}\`
             - **Commit**: \`${{ github.event.pull_request.head.sha }}\`
-            - **Slide file**: \`rubyworld-2025-taigi-parser.md\`
+            - **Slide files**:
+              - Japanese: \`slide-ja.md\` → \`index.html\`
+              - English: \`slide-en.md\` → \`slide-en.html\`
             - **Theme**: \`5xruby.css\`
 
             ### 🔄 Auto-update
@@ -85,7 +94,8 @@ jobs:
 
             ### 🚀 After Merge
             Once merged to \`main\`, slides will be automatically deployed to:
-            - Production: https://rwc2025.ryudo.tw (custom domain)
+            - Japanese (default): https://rwc2025.ryudo.tw
+            - English: https://rwc2025.ryudo.tw/slide-en.html
             - Fallback: https://${repo.owner}.github.io/${repo.repo}/
 
             ---
