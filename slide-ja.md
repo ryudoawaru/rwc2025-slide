@@ -646,188 +646,97 @@ Speaker Note:
 
 # 分詞アライメント処理の実装
 
-**パターンルールと4段階処理フロー**
+**3つのPhaseによる処理フロー**
 
 <!--
 Speaker Note:
 では、実装方法(じっそうほうほう)を見(み)せます。
+3つの Phase で処理(しょり)を進(すす)めます。
 -->
 
 ---
 
-<!-- _class: scale-70 -->
+<!-- _class: center -->
 
-# パターンルールの体系化
 
-<div class="four-columns">
+# 実装の全体フロー：3つのPhase
 
-<div>
 
-## 引用符 （ いんようふ ）（8件）
+<div style="text-align: center;">
 
-```ruby
-# スマート引用符 （ いんようふ ）
-/''/ => "'"
-
-# 前後分離
-/(.)('')(.)/ => '\1 \2 \3'
-/(.)(")(.)/ => '\1 \2 \3'
-
-# 行頭・行末
-/^"/ => '" '
-/"$/ => ' "'
-```
+![w:860](images/rwc2025-setarr.drawio.svg)
 
 </div>
-
-<div>
-
-## 括弧（6件）
-
-```ruby
-# 全角括弧
-/（([^（]+)/ => ' （ \1'
-/([^）]+)）/ => '\1 ） '
-
-# 英数字最適化
-/\(\s([a-z0-9]+)\s\)/
-  => '(\1)'
-```
-
-</div>
-
-<div>
-
-## 省略記号（7件）
-
-```ruby
-# 3点リーダー
-/\s\.\s\.\s\.$/
-  => ' ...'
-'. ..' => '...'
-
-# 台湾式省略
-/(‧‧‧)([^‧])/
-  => '\1 \2'
-```
-
-</div>
-
-<div>
-
-## 句読点（10+件）
-
-```ruby
-# カンマ・ピリオド
-/(.)(,)(.)/ => '\1 \2 \3'
-/([^\.])(\.)/ => '\1 \2'
-
-# 長音符
-'─' => ' ─ '
-
-# コロン
-/(.)(:)(.)/ => '\1 \2 \3'
-```
-
-</div>
-
-</div>
-
-**合計: 65+ パターン規則を体系化**
 
 <!--
 Speaker Note:
-分詞の核心は、変換パターンを定義したハッシュです。
-4つのカテゴリーに分けられます。
+実装(じっそう)は 3 つの Phase に分(わ)かれます。
 
-引用符の処理、括弧の処理、省略記号、句読点の処理。
+Phase 1 は WASH、記号(きごう)の正規化(せいきか)。
+Phase 2 は SPLIT、配列(はいれつ)への分割(ぶんかつ)。
+Phase 3 は ALIGN、対齊(たいせい)と検証(けんしょう)。
 
-これらのパターンを順番に適用することで、
-複雑な記号が混在したテキストを正しく処理できるようになりました。-->
+今日(きょう)の例(れい)は、Edge Case です。
+漢字(かんじ)の中(なか)に Roman 文字(もじ)が含(ふく)まれている例(れい)を使(つか)います。
+
+範例(はんれい)データは画面(がめん)に表示(ひょうじ)されています。
+漢字(かんじ)と POJ の両方(りょうほう)を見(み)てください。
+-->
 
 ---
 
-<!-- _class: scale-80 -->
+<!-- _class: scale-85 -->
 
-# 実装の全体フロー：Step 1 - 漢字分詞処理
+# Phase 1-1: washed_kanji - 漢字の正規化
 
-**処理の流れ:** 漢字文本 → 記号正規化 → CJK文字スキャン → 特殊組合処理 → kanji_array
-
-<div class="three-columns">
+<div class="two-columns">
 
 <div>
 
-## Step 1-1: 記号正規化
+## 実装コード
 
 ```ruby
-kanji = "紲落來看新竹市明仔載。"
-normalized = apply_kanji_patterns(kanji)
-# => "紲落來看新竹市明仔載 。"
-```
+def washed_kanji
+  kanji.then do |ks|
+    KANJI_GSUB_PATTERNS.each do |mt, kp|
+      ks = ks.gsub(mt, kp)
+    end
+    ks
+  end
+end
 
-## Step 1-2: CJK文字をスキャン
-
-```ruby
-RXP_SPK = /[\p{Han}\p{Katakana}
-  \p{Hiragana}\p{Hangul}
-  \u3000-\u303F\uFF00-\uFFEF]|
-  [^\p{Han}\p{Katakana}
-  \p{Hiragana}\p{Hangul}
-  \u3000-\u303F\uFF00-\uFFEF]+/x
-tokens = normalized.scan(RXP_SPK)
+# KANJI_GSUB_PATTERNS（抜粋）
+{
+  /([^\.])\./ => '\1 .',
+  /\.([^\.])/ => '. \1',
+  /（([^（]+)/ => ' （ \1',
+  /([^）]+)）/ => '\1 ） '
+  # ... 他のパターン
+}
 ```
 
 </div>
 
 <div>
 
-## RXP_SPK が識別する文字
+## 処理説明
 
-**Unicode文字プロパティ:**
+1. **KANJI_GSUB_PATTERNS を順次適用**
+   - 記号の前後にスペース挿入
+   - ピリオド、カンマなどを分離
 
-- **\p{Han}**
-  漢字（中日韓）
+2. **主な処理:**
+   - `/([^\.])\./ => '\1 .'` - ピリオド前にスペース
+   - `/\.([^\.])/ => '. \1'` - ピリオド後にスペース
+   - `/（([^（]+)/ => ' （ \1'` - 全角括弧処理
 
-- **\p{Katakana}**
-  日本語カタカナ
+3. **Edge Case 対応:**
+   - Roman 文字（Lín--sàng）も適切に処理
 
-- **\p{Hiragana}**
-  日本語ひらがな
+## 実行例
 
-- **\p{Hangul}**
-  韓国語ハングル
-
-- **\u3000-\u303F**
-  CJK記号・句読点
-
-- **\uFF00-\uFFEF**
-  全角ASCII・半角カタカナ
-
-</div>
-
-<div>
-
-## Step 3: 特殊組合せと結果
-
-```ruby
-# Step 3: 特殊組合せを処理
-combined = combine_special_pairs(tokens)
-
-# 例: 一緒に扱うべき記号
-# "……" + "。" => "……。"
-# "』" + "。" => "』。"
-# "——" + 文字 => "——" + 文字
-
-# 最終結果
-kanji_array = combined.split
-# => ["紲落", "來看", "新竹市",
-#     "明仔載", "。"]
-```
-
-**ポイント:**
-- 多言語混在に対応
-- Unicode標準に基づく
-- 記号の前後処理で分割準備
+**入力:** `做工課的Lín--sàng。`
+**出力:** `做工課的Lín--sàng 。`
 
 </div>
 
@@ -835,109 +744,224 @@ kanji_array = combined.split
 
 <!--
 Speaker Note:
-Step 1 では、漢字テキストを一文字(もじ)ずつの配列(はいれつ)に分割(ぶんかつ)します。
+Phase 1-1 では、漢字(かんじ)テキストの正規化(せいきか)を行(おこな)います。
 
-処理(しょり)は3つのステップです。
+washed_kanji メソッドは、
+KANJI_GSUB_PATTERNS を順番(じゅんばん)に適用(てきよう)します。
 
-まず、記号正規化(せいきか)。
-句点(くてん)などの記号(きごう)の前後にスペースを挿入(そうにゅう)します。
+主(おも)な処理(しょり)は、記号(きごう)の前後(ぜんご)にスペースを挿入(そうにゅう)することです。
 
-次(つぎ)に、RXP_SPK という正規表現(せいきひょうげん)で文字(もじ)をスキャンします。
-この正規表現(せいきひょうげん)は、漢字(かんじ)、ひらがな、カタカナ、ハングルなど、
-Unicode文字(もじ)プロパティを使(つか)って多言語(たげんご)に対応(たいおう)しています。
+この例(れい)では、句点(くてん)「。」の前(まえ)にスペースが挿入(そうにゅう)されます。
 
-最後(さいご)に、特殊(とくしゅ)な記号(きごう)の組(く)み合(あ)わせを処理(しょり)します。
-
-結果(けっか)として、漢字(かんじ)が一文字(もじ)ずつに分割(ぶんかつ)された
-kanji_array が得(え)られます。-->
+Edge Case として、漢字(かんじ)の中(なか)の Roman 文字(もじ)も正(ただ)しく処理(しょり)されます。
+-->
 
 ---
 
-<!-- _class: scale-80 -->
+<!-- _class: scale-85 -->
 
-# 実装の全体フロー：Step 2 - POJ分詞処理
+# Phase 1-2: washed_roman - POJの正規化
 
-**処理の流れ:** POJ文本 → 記号正規化 → スペース分割 → roman_array
-
-<div class="three-columns">
+<div class="two-columns">
 
 <div>
 
-## Step 1: 記号正規化
+## 実装コード
 
 ```ruby
-# ROMAN_GSUB_PATTERNS の適用
-roman = "suà-lo̍h lâi-khuànn,Sin-tik-tshī"
-normalized = apply_roman_patterns(roman)
-# => "suà-lo̍h lâi-khuànn , Sin-tik-tshī"
+def washed_roman
+  roman.then do |rs|
+    ROMAN_GSUB_PATTERNS.each do |mt, rp|
+      rs = rs.gsub(mt, rp)
+    end
+    rs
+  end
+end
 
-# 65+ パターンで正規化:
-# - 引用符 （ いんようふ ）の前後にスペース
-# - カンマ・ピリオドの分離
-# - 括弧の前後処理
-# - 声調記号の正規化
-# - ハイフンの保持（重要！）
+# ROMAN_GSUB_PATTERNS（抜粋）
+{
+  /(.)(\.)(.)/ => '\1 \2 \3',  # ピリオド分離
+  # ハイフンは保持（重要！）
+  # 二重ハイフン（--）も保持
+  # ... 65+ パターン
+}
 ```
-
-**ポイント:**
-- ハイフンは**保持**
-- 記号を分離してスペース挿入
-- Unicode声調記号を正規化
 
 </div>
 
 <div>
 
-## Step 2: スペース分割
+## 処理説明
+
+1. **65+ パターンで正規化**
+   - 記号の前後にスペース挿入
+   - カンマ、ピリオド、引用符などを分離
+
+2. **重要なポイント:**
+   - ✅ **ハイフンは保持** - 音節区切りとして必須
+   - ✅ **二重ハイフン（--）も保持** - 語間停頓
+
+3. **記号処理:**
+   - `/(.)(\.)(.)/ => '\1 \2 \3'` - ピリオド分離
+
+## 実行例
+
+**入力:** `tsò-khang-khuè ê Lín--sàng.`
+**出力:** `tsò-khang-khuè ê Lín--sàng .`
+
+</div>
+
+</div>
+
+<!--
+Speaker Note:
+Phase 1-2 では、POJ テキストの正規化(せいきか)を行(おこな)います。
+
+washed_roman メソッドは、
+ROMAN_GSUB_PATTERNS を順番(じゅんばん)に適用(てきよう)します。
+
+65 個以上(こいじょう)のパターンがありますが、
+最(もっと)も重要(じゅうよう)なのは、ハイフンを保持(ほじ)することです。
+
+ハイフンは音節(おんせつ)の区切(くぎ)りを示(しめ)します。
+二重(にじゅう)ハイフン（--）は語間停頓(ごかんていとん)を示(しめ)します。
+
+この例(れい)では、ピリオドの前後(ぜんご)にスペースが挿入(そうにゅう)されます。
+-->
+
+---
+
+<!-- _class: scale-80 -->
+
+# Phase 2-1: splitted_kanji - 漢字の分割
+
+<div class="two-columns">
+
+<div>
+
+## 実装コード
 
 ```ruby
-# Roman側は非常にシンプル
+def splitted_kanji
+  combine_one_word(
+    washed_kanji.scan(RXP_SPK).map do |spka|
+      spka.split(/\s/)
+    end.flatten.join(' ')
+  ).split
+end
+
+# RXP_SPK - CJK文字と非CJK文字を識別
+RXP_SPK = /[\p{Han}\p{Katakana}\p{Hiragana}
+  \p{Hangul}\u3000-\u303F\uFF00-\uFFEF]|
+  [^\p{Han}\p{Katakana}\p{Hiragana}
+  \p{Hangul}\u3000-\u303F\uFF00-\uFFEF]+/x
+
+# combine_one_word - 特殊組合せ処理
+def combine_one_word(text)
+  text.then do |ks|
+    ONE_KANJI_WORDS.each { |mt, kp|
+      ks = ks.gsub(mt, kp)
+    }
+    ks
+  end
+end
+```
+
+</div>
+
+<div>
+
+## 処理説明
+
+1. **RXP_SPK で文字スキャン**
+   - CJK 文字（漢字、ひらがな等）
+   - 非CJK 文字（Roman、数字等）
+   - 一文字ずつ or 連続した非CJK文字をまとめて認識
+
+2. **combine_one_word で特殊処理**
+   - ONE_KANJI_WORDS パターン適用
+   - 特定の記号組合せを結合
+
+3. **スペースで分割**
+
+4. **Edge Case の処理:**
+   - `Lín--sàng` が1つの token として認識される
+
+## 実行例
+
+**入力:** `做工課的Lín--sàng 。`
+**出力:**
+`["做", "工", "課", "的", "Lín--sàng", "。"]`
+
+</div>
+
+</div>
+
+<!--
+Speaker Note:
+Phase 2-1 では、漢字(かんじ)テキストを配列(はいれつ)に分割(ぶんかつ)します。
+
+splitted_kanji メソッドは、3つのステップで処理(しょり)します。
+
+まず、RXP_SPK 正規表現(せいきひょうげん)で文字(もじ)をスキャンします。
+この正規表現(せいきひょうげん)は、CJK 文字(もじ)と非(ひ) CJK 文字(もじ)を区別(くべつ)します。
+
+次(つぎ)に、combine_one_word で特殊(とくしゅ)な組(く)み合(あ)わせを処理(しょり)します。
+
+最後(さいご)に、スペースで分割(ぶんかつ)します。
+
+この例(れい)では、Roman 文字(もじ)部分(ぶぶん)が 1 つの token として認識(にんしき)されます。
+これが Edge Case の処理(しょり)です。
+-->
+
+---
+
+<!-- _class: scale-85 -->
+
+# Phase 2-2: splitted_roman - POJの分割
+
+<div class="two-columns">
+
+<div>
+
+## 実装コード
+
+```ruby
 def splitted_roman
   washed_roman
     .split(/\s/)
     .compact_blank
 end
-
-# 例:
-"suà-lo̍h lâi-khuànn , Sin-tik-tshī"
-  .split(/\s/)
-# => ["suà-lo̍h",
-#     "lâi-khuànn",
-#     ",",
-#     "Sin-tik-tshī"]
 ```
 
-**重要な設計:**
-- **ハイフンでは分割しない**
-- **スペースのみで分割**
-- 単語内の音節構造を保持
+**シンプル！わずか3行**
 
 </div>
 
 <div>
 
-## 最終結果と特徴
+## 処理説明
 
-```ruby
-# roman_array の生成
-roman_array = splitted_roman
-# => ["suà-lo̍h",
-#     "lâi-khuànn",
-#     ",",
-#     "Sin-tik-tshī"]
-```
+1. **シンプル：スペースで分割**
+   - Phase 1 で記号が既に分離済み
+   - スペースのみで分割可能
 
-**POJ側の特徴:**
+2. **重要な設計:**
+   - ✅ **ハイフンでは分割しない**
+   - ✅ **二重ハイフン（--）も保持**
+   - 単語内の音節構造を維持
 
-- ✅ **シンプル**: 2ステップのみ
-- ✅ **予測可能**: スペースで分割
-- ✅ **音節保持**: ハイフンを保持
-- ✅ **記号分離**: 独立トークン化
+3. **compact_blank で空白要素削除**
 
-**Kanji側との違い:**
-- CJK文字スキャン不要
-- 特殊組合せ処理不要
-- 分割ルールが明確
+## 実行例
+
+**入力:** `tsò-khang-khuè ê Lín--sàng .`
+**出力:**
+`["tsò-khang-khuè", "ê", "Lín--sàng", "."]`
+
+**音節数:**
+- `tsò-khang-khuè` = 3音節
+- `Lín--sàng` = 2音節（--は音節数に含まれない）
 
 </div>
 
@@ -945,97 +969,88 @@ roman_array = splitted_roman
 
 <!--
 Speaker Note:
-POJ側は非常にシンプルです。
+Phase 2-2 では、POJ テキストを配列(はいれつ)に分割(ぶんかつ)します。
 
-パターンで記号を正規化しますが、
-重要なのは、単語内のハイフンは保持することです。
+splitted_roman メソッドは、非常(ひじょう)にシンプルです。
+わずか 3 行(ぎょう)です。
 
-その後、スペースで分割するだけ。
-漢字側のような複雑な処理は不要です。-->
+Phase 1 で既(すで)に記号(きごう)が分離(ぶんり)されているので、
+スペースで分割(ぶんかつ)するだけです。
+
+重要(じゅうよう)な設計(せっけい)は、ハイフンでは分割(ぶんかつ)しないことです。
+単語内(たんごない)の音節構造(おんせつこうぞう)を維持(いじ)します。
+
+音節数(おんせつすう)の計算(けいさん)について説明(せつめい)します。
+最初(さいしょ)の単語(たんご)は 3 音節(おんせつ)です。
+Edge Case の部分(ぶぶん)は 2 音節(おんせつ)です。
+二重(にじゅう)ハイフン（--）は音節数(おんせつすう)に含(ふく)まれません。
+-->
 
 ---
 
-<!-- _class: scale-80 -->
+<!-- _class: scale-75 -->
 
-# 実装の全体フロー：Step 3 - 配列構築と検証
+# Phase 3: 対齊と検証
 
-**処理の流れ:** 配列の組み合わせ → 平衡性検証
-
-<div class="three-columns">
+<div class="two-columns">
 
 <div>
 
-## 対応付け済み配列
-
 ```ruby
-# Step 1, 2 の結果
-roman_array = [
-  "suà-lo̍h",
-  "lâi-khuànn",
-  "Sin-tik-tshī"
-]
+def roman_kanji_array
+  spk = splitted_kanji.dup
+  splitted_roman.map do |rword|
+    if rword == '--' || (SP_MIRRORS.key?(rword) &&
+        #... Edge Case の処理
+        [rword, spss]
+      end
+    end
+  end
+end
 
-kanji_array = [
-  "紲落",
-  "來看",
-  "新竹市"
-]
+def set_arrays
+  rka = roman_kanji_array.transpose
+  assign_attributes(
+    roman_array: rka[0],
+    kanji_array: rka[1]
+  )
+  self.arrays_balanced = [
+    roman_array.size.positive?,
+    roman_array.size == kanji_array.size,
+    kanji_array.join.size ==
+      washed_kanji.delete(' ').size
+  ].all?
+end
 ```
-
-**ポイント:**
-- 既に音節数で対応付け済み
-- 1:1で対応している
 
 </div>
 
 <div>
 
-## zipで組み合わせ
+## 処理説明
 
-```ruby
-# zipで組み合わせ
-pairs = roman_array.zip(
-  kanji_array
-)
+1. **音節数でマッチング**
+   - ハイフン = 音節区切り
+   - `tsò-khang-khuè` (3音節) → 漢字3文字
+   - `Lín--sàng` (2音節) → Roman そのまま
 
-# 結果
-# => [
-#   ["suà-lo̍h", "紲落"],
-#   ["lâi-khuànn", "來看"],
-#   ["Sin-tik-tshī", "新竹市"]
-# ]
-```
+2. **Edge Case の処理:**
+   - Roman が kanji 側にある場合、そのまま対応
+   - 二重ハイフン（--）は音節数に含まれない
 
-**Ruby らしい簡潔さ:**
-- 2つの配列を自動ペア化
-- 1行で完了
+3. **配列の組み合わせ**：`transpose` で roman/kanji を分離
 
-</div>
+4. **平衡性検証（3条件）**
+   - ✅ 配列が空でない
+   - ✅ roman と kanji の要素数が一致
+   - ✅ kanji の総文字数が元の文字数と一致
 
-<div>
+|                           |                                                                                     |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| **kanji_array:**      | `["做工課", "的", "Lín--sàng", "。"]`                                                  |
+| **roman_array:**      | `["tsò-khang-khuè", "ê", "Lín--sàng", "."]`                                       |
+| **roman_kanji_array** | `[["tsò-khang-khuè", "做工課"], ["ê", "的"], ["Lín--sàng", "Lín--sàng"], [".", "。"]]` |
 
-## 平衡性検証
-
-```ruby
-# 3つの条件
-balanced = [
-  roman_array.size > 0,
-
-  roman_array.size ==
-    kanji_array.size,
-
-  kanji_array.join.size ==
-    original_kanji
-      .delete(' ').size
-].all?
-```
-
-**検証結果:**
-```ruby
-# ✅ サイズ: 3 = 3
-# ✅ 文字数: 7 = 7
-arrays_balanced = true
-```
 
 </div>
 
@@ -1043,12 +1058,25 @@ arrays_balanced = true
 
 <!--
 Speaker Note:
-Ruby の zip メソッドで、2つの配列を要素ごとにペア化します。
+Phase 3 では、対齊(たいせい)と検証(けんしょう)を行(おこな)います。
 
-そして、平衡性を検証。
-配列が空でないこと、サイズが同じこと、文字数が一致すること。
+roman_kanji_array メソッドは、
+音節数(おんせつすう)に基(もと)づいてマッチングします。
 
-この検証により、データの完全性が保証されます。-->
+最初(さいしょ)の単語(たんご)は 3 音節(おんせつ)なので、
+漢字(かんじ) 3 文字(もじ)に対応(たいおう)します。
+
+Edge Case の部分(ぶぶん)は特別(とくべつ)です。
+これは kanji 側(がわ)に Roman として存在(そんざい)するので、
+そのまま対応(たいおう)します。
+
+set_arrays メソッドは、
+transpose で roman と kanji を分離(ぶんり)し、
+平衡性(へいこうせい)を検証(けんしょう)します。
+
+3つの条件(じょうけん)をすべて満(み)たせば、
+arrays_balanced は true になります。
+-->
 
 ---
 

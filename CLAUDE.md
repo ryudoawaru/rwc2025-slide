@@ -39,7 +39,7 @@ A flat design illustration showing two contrasting scenes split vertically. Left
 
 Overall text should be in Japanese.
 
-## Presentation Structure Overview (Latest Version 2025-10-19)
+## Presentation Structure Overview (Latest Version 2025-11-01)
 
 ### Main Sections
 
@@ -63,42 +63,100 @@ Overall text should be in Japanese.
    - Page 10: Japanese and Taiwanese Writing Systems
    - Page 11: Real Example of Word Segmentation Alignment Processing
 
-4. **Act 3: Word Segmentation Alignment Implementation** (Pages 12-17)
+4. **Act 3: Word Segmentation Alignment Implementation** (Pages 12-21) ⭐ Reorganized
    - Page 12: Pattern Rule Systematization (65+ patterns)
-   - Pages 13-16: Implementation Flow
-     - Step 1: Kanji Splitting Processing
-     - Step 2: POJ Splitting Processing
-     - Step 3: Alignment Logic
-     - Step 4: Array Construction and Validation
+   - Pages 13-15: Original implementation approach (old pages)
+   - **Pages 16-21: 3-Phase Implementation Flow** 🆕
+     - Page 16: Flow Overview Diagram (Flowchart)
+     - Page 17: Phase 1-1 - washed_kanji (WASH)
+     - Page 18: Phase 1-2 - washed_roman (WASH)
+     - Page 19: Phase 2-1 - splitted_kanji (SPLIT)
+     - Page 20: Phase 2-2 - splitted_roman (SPLIT)
+     - Page 21: Phase 3 - roman_kanji_array & set_arrays (ALIGN)
 
-5. **Act 4: Encounter with Parser** (Pages 18-27) ⭐ Core Section
-   - Page 18: Inspiration from RubyConf Taiwan x COSCUP 2025
-   - Page 19: Insights from Kaneko's Talk
-   - Page 20: RomanParser - Parslet Implementation
-   - Pages 21-23: 3-Phase Details
-     - Phase 1: Lexical Analysis
-     - Phase 2: Syntax Analysis
-     - Phase 3: Semantic Analysis
-   - Page 24: Comparison with Ruby Parser
-   - **Page 25: Why Kanji Doesn't Need a Parser?** 🆕
+5. **Act 4: Encounter with Parser** (Pages 22-27) ⭐ Core Section
+   - Page 22: Inspiration from RubyConf Taiwan x COSCUP 2025
+   - Page 23: Insights from Kaneko's Talk
+   - Page 24: RomanParser - Parslet Implementation
+   - Pages 25-27: Parser analysis and comparison
+   - **Page 28: Why Kanji Doesn't Need a Parser?**
      - POJ syllable count = Kanji character count
      - 1:1 automatic alignment principle
 
-6. **Act 5: Ruby's Advantages** (Pages 26-28)
-   - Page 26: Ruby's 3 Key Advantages
-   - Page 27: Project Results
+6. **Act 5: Ruby's Advantages** (Pages 29-30)
+   - Page 29: Ruby's 3 Key Advantages
+   - Page 30: Project Results
 
-7. **Conclusion** (Pages 28-30)
-   - Page 28: Summary
-   - Page 29: Thank You
+7. **Conclusion** (Pages 31-32)
+   - Page 31: Summary
+   - Page 32: Thank You
 
 ### Key Page Markers
 
-- ⭐ **Page 25**: New core insight page explaining why Kanji doesn't need independent Parser
-- 🔄 **Deleted**: Original Page 28 "3-Phase Analysis Details" (duplicate)
-- 🔄 **Deleted**: Original Page 29 "Compiler Theory Application" (abstract and duplicate)
+- 🆕 **Pages 16-21**: Completely reorganized with 3-phase structure (WASH → SPLIT → ALIGN)
+- 🆕 **Page 16**: New flowchart overview page using `images/rwc2025-setarr.drawio.svg`
+- 📝 **Edge Case Example**: All pages 16-21 use `做工課的Lín--sàng。` / `tsò-khang-khuè ê Lín--sàng.`
+- ⭐ **Page 28**: Core insight page explaining why Kanji doesn't need independent Parser
+- 🔄 **Layout**: All new pages use two-column layout with `scale-85`, `scale-80`, or `scale-75`
 
 ## Important Revision Log
+
+### 2025-11-01: Pages 16-21 Complete Reorganization & Speaker Notes Improvement 🎯
+
+#### Major Structural Changes
+1. **Replaced Pages 16-21 with 3-Phase Implementation Flow**
+   - **Old Structure**: 4-step linear flow (Step 1-4)
+   - **New Structure**: 3-phase approach (WASH → SPLIT → ALIGN)
+   - **Reason**: Better alignment with compiler theory concepts, clearer separation of concerns
+
+2. **New Page 16: Flowchart Overview**
+   - **Purpose**: Visual overview of entire 3-phase process
+   - **Image**: `images/rwc2025-setarr.drawio.svg`
+   - **Layout**: `center` class with 860px image width
+   - **Fix**: Resolved header overlap issue by using proper Marp directives
+
+3. **Phase 1: WASH (正規化) - Pages 17-18**
+   - Page 17: `washed_kanji` - Kanji normalization with KANJI_GSUB_PATTERNS
+   - Page 18: `washed_roman` - POJ normalization with ROMAN_GSUB_PATTERNS
+   - Both show before/after examples with edge case
+
+4. **Phase 2: SPLIT (分割) - Pages 19-20**
+   - Page 19: `splitted_kanji` - Kanji splitting with RXP_SPK regex
+   - Page 20: `splitted_roman` - POJ splitting (simple space-based split)
+   - Emphasis on syllable counting for alignment
+
+5. **Phase 3: ALIGN (対齊) - Page 21**
+   - Shows `roman_kanji_array` and `set_arrays` methods
+   - Demonstrates final array construction and balance validation
+   - Includes complete result table
+
+#### Edge Case Example Unification
+- **Consistent Example**: All pages 16-21 now use:
+  - Kanji: `做工課的Lín--sàng。`
+  - Roman: `tsò-khang-khuè ê Lín--sàng.`
+- **Reason**: Demonstrates Roman text embedded in Kanji, a critical edge case
+
+#### Speaker Notes Localization Improvement
+- **Problem**: Original Speaker Notes contained Taiwanese romanization pronunciations
+- **Issue**: Japanese audience cannot pronounce Taiwanese POJ
+- **Solution**: Removed all Taiwanese romanization from Speaker Notes
+- **Changes**:
+  - Page 16: "画面に表示されている入力データ" instead of specific Taiwanese text
+  - Page 17: "漢字の中の Roman 文字" instead of "Lín--sàng"
+  - Page 19: "Roman 文字部分" instead of "「Lín--sàng」"
+  - Page 20: "最初の単語は 3 音節" instead of "「tsò-khang-khuè」は 3 音節"
+  - Page 21: "Edge Case の部分は特別" instead of "「Lín--sàng」は Edge Case"
+
+#### Layout Consistency
+- **Two-column layout**: All pages use `<div class="two-columns">`
+- **Scale classes**: Applied `scale-85`, `scale-80`, or `scale-75` based on content density
+- **Code blocks**: Consistent syntax highlighting and formatting
+- **Tables**: Aligned data presentation in Phase 3
+
+#### Technical Accuracy
+- All code examples verified against `/Users/ryudo/RailsPrjs/NaerTDSS/app/models/concerns/corpora_array_settable.rb`
+- Method implementations match actual production code
+- Constants (KANJI_GSUB_PATTERNS, ROMAN_GSUB_PATTERNS) accurately represented
 
 ### 2025-10-19: Presentation Structure Reorganization and Optimization 🎯
 
@@ -250,24 +308,41 @@ Speaker Notes Content:
 -->
 ```
 
-### Page 12a Speaker Notes Example
+### Speaker Notes Writing Guidelines
+
+**IMPORTANT**: Since the presentation is for a Japanese audience at RubyWorld Conference, Speaker Notes must follow these rules:
+
+1. **No Taiwanese Romanization Pronunciation**
+   - ❌ Don't write: "「tsò-khang-khuè」は 3 音節です"
+   - ✅ Instead write: "最初の単語は 3 音節です"
+   - **Reason**: Japanese audience cannot pronounce Taiwanese POJ
+
+2. **Use Positional References**
+   - ✅ "最初の単語" (first word)
+   - ✅ "Edge Case の部分" (Edge Case portion)
+   - ✅ "画面に表示されている" (displayed on screen)
+
+3. **Generic Technical Descriptions**
+   - ✅ "漢字の中の Roman 文字" (Roman text within Kanji)
+   - ✅ "Roman 文字部分" (Roman text portion)
+
+4. **When to Show Taiwanese Text**
+   - ✅ On slides (visual reference is fine)
+   - ✅ In code examples
+   - ✅ In tables
+   - ❌ In Speaker Notes (speaker cannot pronounce)
+
+### Example: Pages 16-21 Speaker Notes
 ```markdown
-Now, we reach the core section of this presentation.
-The first challenge is the complexity of hyphens.
+<!-- Good Example - Page 20 -->
+音節数(おんせつすう)の計算(けいさん)について説明(せつめい)します。
+最初(さいしょ)の単語(たんご)は 3 音節(おんせつ)です。
+Edge Case の部分(ぶぶん)は 2 音節(おんせつ)です。
+二重(にじゅう)ハイフン（--）は音節数(おんせつすう)に含(ふく)まれません。
 
-POJ in Taiwanese requires 3 types of hyphen handling.
-
-First, intra-word hyphens.
-These should be preserved.
-...
-
-Third, prefix hyphen handling.
-Let's look at an actual example.
-There's a sentence "日時斷斷仔".
-In POJ, it's written as "ji̍t--sî tuān-tuān-á".
-
-This "--" is a special marker representing inter-word pause.
-It's similar to the Japanese geminate consonant "っ".
+<!-- Bad Example - Avoid This -->
+「tsò-khang-khuè」は 3 音節(おんせつ)です。
+「Lín--sàng」は 2 音節(おんせつ)です。
 ```
 
 ## Maintenance Notes
