@@ -280,18 +280,36 @@ All code examples in this presentation come from actual project, located in pare
 
 ## Technical Terminology Reference (For Presentation)
 
-| Chinese | Japanese | English | Notes |
-|---------|----------|---------|-------|
-| 分詞 | 分詞 | Word Segmentation | Now unified as "分詞アライメント処理" |
-| 白話字 | 白話字 | Pe̍h-ōe-jī (POJ) | Taiwanese romanization system |
-| 聲調標記 | 声調記号 | Tone Marks | Unicode combining characters |
-| 連字符 | ハイフン | Hyphen | - |
-| 語間停頓 | 語間停頓 | Inter-word Pause | `--` symbol, similar to Japanese "っ" |
-| 對齊 | アライメント | Alignment | - |
-| 平衡性檢查 | バランス検証 | Balance Check | `arrays_balanced` |
-| 字句解析 | 字句解析 | Lexical Analysis | Tokenization |
-| 構文解析 | 構文解析 | Syntax Analysis | Pattern Matching |
-| 意味解析 | 意味解析 | Semantic Analysis | Validation |
+### Core Terminology (Unified Usage)
+
+| Chinese | Japanese | English | Usage Context | Notes |
+|---------|----------|---------|---------------|-------|
+| 分詞 | 分詞アライメント処理 | Word Segmentation Alignment | All contexts | Unified full term |
+| 台羅 | 台羅（POJ） | Tâi-lô (POJ) | First introduction | Full formal name |
+| 白話字 | POJ | Pe̍h-ōe-jī | Technical & general | Unified short form |
+| 羅馬字 | POJ 文字 | POJ text/characters | Edge cases, examples | NOT "Roman 文字" |
+| 聲調標記 | 声調記号 | Tone Marks | Technical | Unicode combining characters |
+| 連字符 | ハイフン | Hyphen | Technical | `-` or `--` |
+| 語間停頓 | 語間停頓 | Inter-word Pause | Technical | `--` symbol |
+| 對齊 | アライメント | Alignment | Technical | - |
+| 平衡性檢查 | バランス検証 | Balance Check | Technical | `arrays_balanced` |
+| 字句解析 | 字句解析 | Lexical Analysis | Parser theory | Tokenization |
+| 構文解析 | 構文解析 | Syntax Analysis | Parser theory | Pattern Matching |
+| 意味解析 | 意味解析 | Semantic Analysis | Parser theory | Validation |
+
+### POJ/台羅 Terminology Guidelines
+
+**Context-based Usage:**
+1. **First Introduction** (Page 9): `台羅（POJ）とは？`
+2. **Technical Code** (Pages 17-21): `POJ` (in method names, variables)
+3. **General Explanation** (Throughout): `POJ` (consistent short form)
+4. **Edge Cases** (Pages 17, 19): `POJ 文字` (NOT `Roman 文字`)
+5. **Historical Context** (Page 9): `白話字 (POJ)` (only when discussing history)
+
+**Deprecated Terms:**
+- ❌ `Roman 文字` → ✅ `POJ 文字`
+- ❌ `白話字：` (as label) → ✅ `POJ：`
+- ❌ Mixed usage → ✅ Consistent `POJ`
 
 ## Speaker Notes Guide
 
@@ -323,8 +341,8 @@ Speaker Notes Content:
    - ✅ "画面に表示されている" (displayed on screen)
 
 3. **Generic Technical Descriptions**
-   - ✅ "漢字の中の Roman 文字" (Roman text within Kanji)
-   - ✅ "Roman 文字部分" (Roman text portion)
+   - ✅ "漢字の中の POJ 文字" (POJ text within Kanji)
+   - ✅ "POJ 文字部分" (POJ text portion)
 
 4. **When to Show Taiwanese Text**
    - ✅ On slides (visual reference is fine)
