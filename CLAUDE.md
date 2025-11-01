@@ -6,14 +6,14 @@ This project aims to generate Marp format slides for presentation at RubyWorld C
 
 ## Slide Files
 
-- **Main File**: `rubyworld-2025-taigi-parser.md`
+- **Main File**: `slide-ja.md`
 - **Theme**: `5xruby.css`
 - **Presentation Time**: 15 minutes (pure presentation, no Q&A)
 
 ## Project Goals
 
 - Generate Marp format slides in Japanese for RubyWorld Conference 2025 (15-minute presentation) with speaker notes
-- Target file: rubyworld-2025-taigi-parser.md
+- Target file: slide-ja.md
 - All images stored in `images/`
 
 ## Image Generation
@@ -374,7 +374,7 @@ Edge Case の部分(ぶぶん)は 2 音節(おんせつ)です。
 npx @marp-team/marp-cli@latest -s ./
 ```
 
-Open http://localhost:8080/rubyworld-2025-taigi-parser.md to check
+Open http://localhost:8080/slide-ja.md to check
 
 ### Checklist
 - [ ] All page content doesn't overflow into footer
