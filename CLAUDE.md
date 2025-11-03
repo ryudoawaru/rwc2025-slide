@@ -63,48 +63,48 @@ Overall text should be in Japanese.
    - Page 10: Japanese and Taiwanese Writing Systems
    - Page 11: Real Example of Word Segmentation Alignment Processing
 
-4. **Act 3: Word Segmentation Alignment Implementation** (Pages 12-21) ⭐ Reorganized
+4. **Act 3: Word Segmentation Alignment Implementation** (Pages 12-20) ⭐ Reorganized
    - Page 12: Pattern Rule Systematization (65+ patterns)
    - Pages 13-15: Original implementation approach (old pages)
-   - **Pages 16-21: 3-Phase Implementation Flow** 🆕
+   - **Pages 16-20: 3-Phase Implementation Flow** 🆕
      - Page 16: Flow Overview Diagram (Flowchart)
-     - Page 17: Phase 1-1 - washed_kanji (WASH)
-     - Page 18: Phase 1-2 - washed_roman (WASH)
-     - Page 19: Phase 2-1 - splitted_kanji (SPLIT)
-     - Page 20: Phase 2-2 - splitted_roman (SPLIT)
-     - Page 21: Phase 3 - roman_kanji_array & set_arrays (ALIGN)
+     - Page 17: Phase 1 - washed_kanji & washed_roman (WASH) - **Merged** ✨
+     - Page 18: Phase 2-1 - splitted_kanji (SPLIT)
+     - Page 19: Phase 2-2 - splitted_roman (SPLIT)
+     - Page 20: Phase 3 - roman_kanji_array & set_arrays (ALIGN)
 
-5. **Act 4: Encounter with Parser** (Pages 22-27) ⭐ Core Section
-   - Page 22: Inspiration from RubyConf Taiwan x COSCUP 2025
-   - Page 23: Insights from Kaneko's Talk
-   - Page 24: RomanParser - Parslet Implementation
-   - Pages 25-27: Parser analysis and comparison
-   - **Page 28: Why Kanji Doesn't Need a Parser?**
+5. **Act 4: Encounter with Parser** (Pages 21-26) ⭐ Core Section
+   - Page 21: Inspiration from RubyConf Taiwan x COSCUP 2025
+   - Page 22: Insights from Kaneko's Talk
+   - Page 23: RomanParser - Parslet Implementation
+   - Pages 24-26: Parser analysis and comparison
+   - **Page 27: Why Kanji Doesn't Need a Parser?**
      - POJ syllable count = Kanji character count
      - 1:1 automatic alignment principle
 
-6. **Act 5: Ruby's Advantages** (Pages 29-30)
-   - Page 29: Ruby's 3 Key Advantages
-   - Page 30: Project Results
+6. **Act 5: Ruby's Advantages** (Pages 28-29)
+   - Page 28: Ruby's 3 Key Advantages
+   - Page 29: Project Results
 
-7. **Conclusion** (Pages 31-32)
-   - Page 31: Summary
-   - Page 32: Thank You
+7. **Conclusion** (Pages 30-31)
+   - Page 30: Summary
+   - Page 31: Thank You
 
 ### Key Page Markers
 
-- 🆕 **Pages 16-21**: Completely reorganized with 3-phase structure (WASH → SPLIT → ALIGN)
+- 🆕 **Pages 16-20**: Completely reorganized with 3-phase structure (WASH → SPLIT → ALIGN)
 - 🆕 **Page 16**: New flowchart overview page using `images/rwc2025-setarr.drawio.svg`
-- 📝 **Edge Case Example**: All pages 16-21 use `做工課的Lín--sàng。` / `tsò-khang-khuè ê Lín--sàng.`
-- ⭐ **Page 28**: Core insight page explaining why Kanji doesn't need independent Parser
+- ✨ **Page 17**: Merged Phase 1-1 and 1-2 into single two-column page (WASH)
+- 📝 **Edge Case Example**: All pages 16-20 use `做工課的Lín--sàng。` / `tsò-khang-khuè ê Lín--sàng.`
+- ⭐ **Page 27**: Core insight page explaining why Kanji doesn't need independent Parser
 - 🔄 **Layout**: All new pages use two-column layout with `scale-85`, `scale-80`, or `scale-75`
 
 ## Important Revision Log
 
-### 2025-11-01: Pages 16-21 Complete Reorganization & Speaker Notes Improvement 🎯
+### 2025-11-01: Pages 16-20 Complete Reorganization & Page Merge 🎯
 
 #### Major Structural Changes
-1. **Replaced Pages 16-21 with 3-Phase Implementation Flow**
+1. **Replaced Pages 16-21 with 3-Phase Implementation Flow (Now Pages 16-20)**
    - **Old Structure**: 4-step linear flow (Step 1-4)
    - **New Structure**: 3-phase approach (WASH → SPLIT → ALIGN)
    - **Reason**: Better alignment with compiler theory concepts, clearer separation of concerns
@@ -115,23 +115,26 @@ Overall text should be in Japanese.
    - **Layout**: `center` class with 860px image width
    - **Fix**: Resolved header overlap issue by using proper Marp directives
 
-3. **Phase 1: WASH (正規化) - Pages 17-18**
-   - Page 17: `washed_kanji` - Kanji normalization with KANJI_GSUB_PATTERNS
-   - Page 18: `washed_roman` - POJ normalization with ROMAN_GSUB_PATTERNS
+3. **Phase 1: WASH (正規化) - Page 17** ✨ **Merged**
+   - **Old**: Two separate pages (Page 17 + Page 18)
+   - **New**: Single two-column page
+   - Left column: `washed_kanji` - Kanji normalization with KANJI_GSUB_PATTERNS
+   - Right column: `washed_roman` - POJ normalization with ROMAN_GSUB_PATTERNS
    - Both show before/after examples with edge case
+   - **Layout**: `scale-65` (adjusted from `scale-75` to fix 28px overflow)
 
-4. **Phase 2: SPLIT (分割) - Pages 19-20**
-   - Page 19: `splitted_kanji` - Kanji splitting with RXP_SPK regex
-   - Page 20: `splitted_roman` - POJ splitting (simple space-based split)
+4. **Phase 2: SPLIT (分割) - Pages 18-19**
+   - Page 18: `splitted_kanji` - Kanji splitting with RXP_SPK regex
+   - Page 19: `splitted_roman` - POJ splitting (simple space-based split)
    - Emphasis on syllable counting for alignment
 
-5. **Phase 3: ALIGN (対齊) - Page 21**
+5. **Phase 3: ALIGN (対齊) - Page 20**
    - Shows `roman_kanji_array` and `set_arrays` methods
    - Demonstrates final array construction and balance validation
    - Includes complete result table
 
 #### Edge Case Example Unification
-- **Consistent Example**: All pages 16-21 now use:
+- **Consistent Example**: All pages 16-20 now use:
   - Kanji: `做工課的Lín--sàng。`
   - Roman: `tsò-khang-khuè ê Lín--sàng.`
 - **Reason**: Demonstrates Roman text embedded in Kanji, a critical edge case
@@ -157,6 +160,41 @@ Overall text should be in Japanese.
 - All code examples verified against `/Users/ryudo/RailsPrjs/NaerTDSS/app/models/concerns/corpora_array_settable.rb`
 - Method implementations match actual production code
 - Constants (KANJI_GSUB_PATTERNS, ROMAN_GSUB_PATTERNS) accurately represented
+
+### 2025-11-01 (Part 2): Phase 1 Page Merge Completion ✨
+
+#### Page Simplification Achievement
+1. **Successfully Merged Phase 1-1 and 1-2 into Single Page**
+   - **Old Structure**: 2 separate pages (lines 686-830)
+   - **New Structure**: 1 two-column page (lines 686-764)
+   - **Reduction**: Saved 1 page (from 6 pages → 5 pages for Phase 1-3 sections)
+
+2. **Layout Optimization**
+   - **Initial attempt**: `scale-75` → 28px overflow detected
+   - **Second attempt**: `scale-70` → 10px overflow remaining
+   - **Final solution**: `scale-65` → 0px overflow ✓
+   - **Verification**: Chrome DevTools measurement confirmed perfect fit
+
+3. **Page Numbering Updates**
+   - Updated CLAUDE.md presentation structure (Act 3: Pages 12-21 → Pages 12-20)
+   - Updated Act 4 page numbers (Pages 22-27 → Pages 21-26)
+   - Updated Act 5 page numbers (Pages 29-30 → Pages 28-29)
+   - Updated Conclusion page numbers (Pages 31-32 → Pages 30-31)
+   - Fixed slide-ja.md reference: "Page 17 & 18" → "Page 17"
+
+4. **Documentation Updates**
+   - Key Page Markers section updated to reflect merge
+   - Added ✨ marker for merged page
+   - Updated Edge Case Example reference (Pages 16-21 → Pages 16-20)
+
+#### Testing Results
+- **Browser**: Chrome DevTools at http://localhost:8080/slide-ja.md
+- **Page Position**: Index 18 (Page 19 in presentation)
+- **Final Measurements**:
+  - scrollHeight: 720px
+  - clientHeight: 720px
+  - overflowAmount: 0px ✓
+  - hasOverflow: false ✓
 
 ### 2025-10-19: Presentation Structure Reorganization and Optimization 🎯
 
