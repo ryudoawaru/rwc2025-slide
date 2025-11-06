@@ -32,6 +32,7 @@ Speaker Note:
 ---
 
 <!-- _class: center scale-95 -->
+<!-- _header: "" -->
 
 # 自己紹介
 
@@ -180,15 +181,29 @@ RubyCity Matsue から協力(きょうりょく)の提案(ていあん)があり
 
 ---
 
-<!-- _class: center -->
+<!-- _class: scale-90 -->
 
 # 5xRubyについて
+
+<div class="two-columns">
+
+<div style="display: flex; flex-direction: column; justify-content: center; align-self: center;">
 
 **「愛する技術で愛される製品を創る」**
 
 - **創業**: 2014年（台北）
 - **専門**: Ruby/Railsを中心としたソフトウェア開発
 - **実績**: スタートアップ向けシステム開発を中心に、政府機関との協業案件も手がける
+
+</div>
+
+<div style="display: flex; align-items: center; justify-content: center; background: none; border: none; padding: 0;">
+
+![w:400](images/5xruby-logo.png)
+
+</div>
+
+</div>
 
 <!--
 Speaker Note:
@@ -319,6 +334,7 @@ Speaker Note:
 ---
 
 <!-- _class: lead -->
+<!-- _header: "" -->
 
 # 無人入札の物語
 
@@ -464,7 +480,7 @@ Speaker Note:
 ---
 
 <!-- _class: center highlight -->
-
+<!-- _header: "" -->
 # 落札後の真相
 
 **「分詞（文字分割）が煩雑すぎて**
@@ -488,6 +504,7 @@ Speaker Note:
 ---
 
 <!-- _class: lead -->
+<!-- _header: "" -->
 
 # 台羅（POJ）とは？
 
@@ -531,8 +548,8 @@ Speaker Note:
 - **特徴**:
   - 9つの声調
   - 独自の子音・母音体系
-  - 鼻音化の表記 (nn)
-- **歴史**: 白話字 (POJ) をベースに IPA 要素を取り入れて開発
+  - 鼻音化の表記
+- **歴史**: 白話字 (POJ) をベースに IPA（国際音声記号）要素を取り入れて開発
 
 </div>
 
@@ -678,6 +695,7 @@ Speaker Note:
 ---
 
 <!-- _class: lead -->
+<!-- _header: "" -->
 
 # 分詞アライメント処理の実装
 
@@ -692,6 +710,7 @@ Speaker Note:
 ---
 
 <!-- _class: center -->
+<!-- _header: "" -->
 
 
 # 実装の全体フロー：3つのPhase
@@ -732,11 +751,8 @@ Phase 3 は ALIGN、対齊(たいせい)と検証(けんしょう)。
 
 ```ruby
 def washed_kanji
-  kanji.then do |ks|
-    KANJI_GSUB_PATTERNS.each do |mt, kp|
-      ks = ks.gsub(mt, kp)
-    end
-    ks
+  KANJI_GSUB_PATTERNS.reduce(kanji) do |ks, (mt, kp)|
+    ks.gsub(mt, kp)
   end
 end
 ```
@@ -749,7 +765,7 @@ end
 **実行例:**
 ```
 入力: 做工課的Lín--sàng。
-出力: 做工課的Lín--sàng 。
+出力: 做工課的Lín --sàng。
 ```
 
 </div>
@@ -760,11 +776,8 @@ end
 
 ```ruby
 def washed_roman
-  roman.then do |rs|
-    ROMAN_GSUB_PATTERNS.each do |mt, rp|
-      rs = rs.gsub(mt, rp)
-    end
-    rs
+  ROMAN_GSUB_PATTERNS.reduce(roman) do |rs, (mt, rp)|
+    rs.gsub(mt, rp)
   end
 end
 ```
@@ -1050,6 +1063,7 @@ transpose で roman と kanji を分離(ぶんり)し、
 ---
 
 <!-- _class: lead -->
+<!-- _header: "" -->
 
 # Parserとの出会い
 
@@ -1121,6 +1135,7 @@ Speaker Note:
 ---
 
 <!-- _class: center highlight -->
+<!-- _header: "" -->
 
 # Conference Driven Development
 
@@ -1762,6 +1777,7 @@ Speaker Note:
 ---
 
 <!-- _class: lead -->
+<!-- _header: "" -->
 
 # プロジェクトの成果
 
@@ -1879,6 +1895,30 @@ Speaker Note:
 ---
 
 <!-- _class: center highlight -->
+<!-- _header: "" -->
+
+<style scoped>
+section.highlight ul,
+section.highlight ol,
+section.highlight li {
+  color: white !important;
+}
+section.highlight strong {
+  color: white !important;
+}
+section.highlight li::before {
+  color: white !important;
+}
+section.highlight p {
+  color: white !important;
+  margin-top: 0.25em !important;
+  margin-bottom: 0.25em !important;
+}
+section.highlight li {
+  margin-top: 0.3em !important;
+  margin-bottom: 0.3em !important;
+}
+</style>
 
 # 結論
 
@@ -1887,6 +1927,10 @@ Speaker Note:
 - Ruby の 3-phase 分析 → 台湾語の分詞アライメント
 
 **適切な道具を選び、原理を理解すれば、複雑な問題も解決できる**
+
+**Conference から学び、新しい領域に挑戦する**
+- 既存の知識を新しい問題に応用
+- エンジニアとしての成長の道
 
 <!--
 Speaker Note:

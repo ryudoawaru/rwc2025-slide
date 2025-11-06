@@ -501,6 +501,16 @@ section.highlight pre code {
   color: white;
 }
 
+section.highlight::after {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  background-image: url('./images/5xruby-logo-white.png');
+}
+
+section.highlight::before {
+  color: white;
+}
+
 /* Two columns layout */
 section.columns {
   display: grid;
