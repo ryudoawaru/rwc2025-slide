@@ -53,6 +53,13 @@ jobs:
             --allow-local-files \
             -o output/index.html
 
+          # Generate English version (slide-en.md already has no Speaker Notes)
+          npx @marp-team/marp-cli slide-en.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o output/en.html
+
           # Remove temporary Markdown file
           rm output/slide-ja-no-notes.md
 
@@ -72,7 +79,9 @@ jobs:
           ## Available Languages
 
           - [日本語版 (Japanese)](index.html) - Main presentation
-          - [Markdown Source](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
+          - [English Version](en.html) - English presentation
+          - [Markdown Source (Japanese)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
+          - [Markdown Source (English)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-en.md)
 
           ## About
 
