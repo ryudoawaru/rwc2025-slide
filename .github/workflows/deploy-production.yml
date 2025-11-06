@@ -50,8 +50,8 @@ jobs:
             --allow-local-files \
             -o output/index.html
 
-          # Remove Speaker Notes (HTML comments) from Japanese version
-          perl -i -pe 's/<!--.*?Speaker Note:.*?-->//gs' output/index.html
+          # Remove Speaker Notes (bespoke-marp-note divs) from Japanese version
+          perl -i -pe 's/<div class="bespoke-marp-note".*?<\/div>//gs' output/index.html
 
           # Copy assets to output directory
           if [ -d "images" ]; then
