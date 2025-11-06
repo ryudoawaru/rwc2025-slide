@@ -51,17 +51,7 @@ jobs:
             -o output/index.html
 
           # Remove Speaker Notes (HTML comments) from Japanese version
-          sed -i 's/<!--[^>]*Speaker Note:[^>]*-->//g' output/index.html
-
-          # Generate English version
-          npx @marp-team/marp-cli slide-en.md \
-            --theme 5xruby.css \
-            --html \
-            --allow-local-files \
-            -o output/slide-en.html
-
-          # Remove Speaker Notes (HTML comments) from English version
-          sed -i 's/<!--[^>]*Speaker Note:[^>]*-->//g' output/slide-en.html
+          perl -i -pe 's/<!--.*?Speaker Note:.*?-->//gs' output/index.html
 
           # Copy assets to output directory
           if [ -d "images" ]; then
@@ -78,10 +68,8 @@ jobs:
 
           ## Available Languages
 
-          - [日本語版 (Japanese)](index.html) - Main presentation (Default)
-          - [English Version](slide-en.html) - English version
-          - [Markdown Source (JA)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
-          - [Markdown Source (EN)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-en.md)
+          - [日本語版 (Japanese)](index.html) - Main presentation
+          - [Markdown Source](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
 
           ## About
 
