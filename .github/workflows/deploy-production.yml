@@ -43,15 +43,18 @@ jobs:
         run: |
           mkdir -p output
 
-          # Generate Japanese version (default/main)
-          npx @marp-team/marp-cli slide-ja.md \
+          # Remove Speaker Notes from Markdown before generating HTML
+          perl -0777 -pe 's/<!--\s*\nSpeaker Note:.*?-->\s*\n//gs' slide-ja.md > output/slide-ja-no-notes.md
+
+          # Generate Japanese version (default/main) from cleaned Markdown
+          npx @marp-team/marp-cli output/slide-ja-no-notes.md \
             --theme 5xruby.css \
             --html \
             --allow-local-files \
             -o output/index.html
 
-          # Remove Speaker Notes (bespoke-marp-note divs) from Japanese version
-          perl -i -pe 's/<div class="bespoke-marp-note".*?<\/div>//gs' output/index.html
+          # Remove temporary Markdown file
+          rm output/slide-ja-no-notes.md
 
           # Copy assets to output directory
           if [ -d "images" ]; then
