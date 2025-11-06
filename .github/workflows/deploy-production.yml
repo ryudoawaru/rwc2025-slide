@@ -50,12 +50,18 @@ jobs:
             --allow-local-files \
             -o output/index.html
 
+          # Remove Speaker Notes (HTML comments) from Japanese version
+          sed -i 's/<!--[^>]*Speaker Note:[^>]*-->//g' output/index.html
+
           # Generate English version
           npx @marp-team/marp-cli slide-en.md \
             --theme 5xruby.css \
             --html \
             --allow-local-files \
             -o output/slide-en.html
+
+          # Remove Speaker Notes (HTML comments) from English version
+          sed -i 's/<!--[^>]*Speaker Note:[^>]*-->//g' output/slide-en.html
 
           # Copy assets to output directory
           if [ -d "images" ]; then

@@ -840,11 +840,8 @@ RXP_SPK = /[\p{Han}\p{Katakana}\p{Hiragana}
 
 # combine_one_word - 特殊組合せ処理
 def combine_one_word(text)
-  text.then do |ks|
-    ONE_KANJI_WORDS.each { |mt, kp|
-      ks = ks.gsub(mt, kp)
-    }
-    ks
+  ONE_KANJI_WORDS.reduce(text) do |ks, (mt, kp)|
+    ks.gsub(mt, kp)
   end
 end
 ```
