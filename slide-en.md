@@ -114,9 +114,9 @@ h2 { font-size: 2.5em;  padding: 0 0; margin: 0.25em 0;}
     <div style="width: 3px; height: 1em; background: #CC342D;"></div>
     <div style="margin: 1em 0; font-size: 1.1em; font-weight: bold; color: #CC342D;">2023</div>
     <div style="background: linear-gradient(135deg, #fff 0%, #fafafa 100%); padding: 0.6em; border-radius: 8px; border: 2px solid #CC342D; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-      <div style="color: #CC342D; font-weight: bold; margin-bottom: 0.3em; font-size: 0.8em;">💝 Partnership Proposal</div>
+      <div style="color: #CC342D; font-weight: bold; margin-bottom: 0.3em; font-size: 0.8em;">💝 Mutual Exchange</div>
       <ul style="font-size: 0.65em; line-height: 1.2; margin: 0; padding-left: 2em; text-align: left;">
-        <li>Collaboration proposal from RubyCity</li>
+        <li>Mutual exchange with RubyCity</li>
         <li>Meeting with mayor at city hall</li>
         <li>Returned to RWC stage</li>
       </ul>
@@ -545,9 +545,9 @@ end
 ```
 
 **Processing:**
+- Uses dozens of regex patterns for string processing
 - Insert spaces around punctuation
 - Separate periods, commas, parentheses, etc.
-- Properly handle POJ text (Lín--sàng)
 
 **Example:**
 ```
@@ -678,13 +678,13 @@ end
 ## Processing Explanation
 
 1. **Simple: Split by spaces**
-   - Punctuation already separated in Phase 1
+   - Phase 1 pre-processing makes Phase 2 simple
    - Can split by spaces alone
 
 2. **Important design:**
+   - ✅ **Hyphens are syllable boundary markers**
    - ✅ **Don't split by hyphens**
    - ✅ **Preserve double hyphens (--)**
-   - Maintain syllable structure within words
 
 3. **compact_blank removes empty elements**
 
@@ -745,18 +745,15 @@ end
 
 ## Processing Explanation
 
-1. **Match by syllable count**
+1. **Syllable-based matching**
    - Hyphen = syllable separator
    - `tsò-khang-khuè` (3 syllables) → 3 Kanji characters
-   - `Lín--sàng` (2 syllables) → Roman as-is
 
 2. **Edge Case handling:**
    - When Roman appears in Kanji side, keep as-is
    - Double hyphen (--) not counted in syllables
 
-3. **Array combination**: Use `transpose` to separate roman/kanji
-
-4. **Balance validation (3 conditions)**
+3. **Balance validation (3 conditions)**
    - ✅ Array is not empty
    - ✅ Roman and Kanji element counts match
    - ✅ Total Kanji character count matches original text
@@ -785,7 +782,7 @@ end
 
 <!-- _class: scale-90 -->
 
-# Insight from Kaneko-san's Talk
+# Insights from Kaneko-san's Talk
 
 <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2em; align-items: center;">
 
@@ -812,7 +809,7 @@ end
 <div style="margin-top: 2em; padding: 1em; background: linear-gradient(135deg, #fff3cd 0%, #fff 100%); border-radius: 8px;">
 
 <div style="text-align: center; font-size: 1.1em; margin-bottom: 0.8em;">
-💡 **"What I was doing was... a Parser!"**
+💡 **"What I was doing in this project was... a Parser!"**
 </div>
 
 <div style="text-align: center; font-size: 1.05em; margin-top: 1em; padding-top: 1em; border-top: 2px dashed #CC342D;">
@@ -1353,8 +1350,9 @@ Parse errors:     0 (0.0%)
 
 # Taiwanese Corpus System
 
+- **Official Name**: 臺灣台語語料庫 應用檢索系統 (Taiwanese Language Corpus Application Search System)
 - **Public URL**: https://tggl.naer.edu.tw
-- **Client**: Ministry of Education / National Academy for Educational Research
+- **Client**: Ministry of Education (similar to MEXT) / National Academy for Educational Research
 
 <div style="text-align: center; margin: 1.5em 0;">
 
@@ -1484,9 +1482,12 @@ section.highlight li {
 
 <div style="text-align: center;">
 
-## 🎪 Booth Exhibition
+## 🎪 Joint Booth Exhibition
 
 ![w:280](images/booth.jpg)
+
+**Ruby Taiwan Community & RUBYCITY MATSUE**
+**Exhibition Hall, 1st Floor**
 
 **Please visit us!**
 
