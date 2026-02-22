@@ -47,6 +47,20 @@ jobs:
             --allow-local-files \
             -o preview/slide-en.html
 
+          # Generate RubyJam Chinese version
+          npx @marp-team/marp-cli rubyjam.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o preview/rubyjam.html
+
+          # Generate RubyJam English version
+          npx @marp-team/marp-cli rubyjam-en.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o preview/rubyjam-en.html
+
           # Copy assets
           if [ -d "images" ]; then
             cp -r images preview/
@@ -87,6 +101,8 @@ jobs:
             - **Slide files**:
               - Japanese: \`slide-ja.md\` → \`index.html\`
               - English: \`slide-en.md\` → \`slide-en.html\`
+              - RubyJam (中文): \`rubyjam.md\` → \`rubyjam.html\`
+              - RubyJam (English): \`rubyjam-en.md\` → \`rubyjam-en.html\`
             - **Theme**: \`5xruby.css\`
 
             ### 🔄 Auto-update
@@ -95,7 +111,9 @@ jobs:
             ### 🚀 After Merge
             Once merged to \`main\`, slides will be automatically deployed to:
             - Japanese (default): https://rwc2025.ryudo.tw
-            - English: https://rwc2025.ryudo.tw/slide-en.html
+            - English: https://rwc2025.ryudo.tw/en.html
+            - RubyJam (中文): https://rwc2025.ryudo.tw/rubyjam.html
+            - RubyJam (English): https://rwc2025.ryudo.tw/rubyjam-en.html
             - Fallback: https://${repo.owner}.github.io/${repo.repo}/
 
             ---

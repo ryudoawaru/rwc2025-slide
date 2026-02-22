@@ -6,9 +6,127 @@ This project aims to generate Marp format slides for presentation at RubyWorld C
 
 ## Slide Files
 
-- **Main File**: `slide-ja.md`
-- **Theme**: `5xruby.css`
-- **Presentation Time**: 15 minutes (pure presentation, no Q&A)
+- **Japanese (RubyWorld Conference 2025)**: `slide-ja.md`
+- **Chinese (RubyJam 2025)**: `rubyjam.md`
+- **Theme**: `5xruby.css` (shared)
+- **Presentation Time**: 15 minutes each (pure presentation, no Q&A)
+
+## RubyJam 2025 Chinese Version (`rubyjam.md`)
+
+### Overview
+
+Traditional Chinese adaptation of the RubyWorld Conference 2025 presentation for RubyJam (Taiwan audience). Since Taiwan audience already knows 5xRuby and local government project context, intro is minimal (2 pages vs 5). Freed-up time goes to deeper technical content.
+
+- **File**: `rubyjam.md`
+- **Theme**: `5xruby` (same CSS)
+- **Header**: `'RubyJam 2025'`
+- **Language**: Traditional Chinese (speaker notes also in Chinese)
+- **Total Pages**: 33 (32 content + frontmatter)
+- **Status**: Draft - content complete, pending edit & translation refinement
+
+### Differences from `slide-ja.md`
+
+| Aspect | slide-ja.md (Japanese) | rubyjam.md (Chinese) |
+|--------|----------------------|---------------------|
+| Audience | Japanese (RubyWorld) | Taiwanese (RubyJam) |
+| Intro pages | 5 (Matsue MOU, 5xRuby detail) | 2 (minimal self-intro) |
+| "No bidders" story | 3 pages | 1 page (condensed) |
+| Edge Cases page | - | Page 17 (new) |
+| GSUB Challenges page | - | Page 18 (new) |
+| Parslet Complete Rules | - | Page 25 (new, 8 token types) |
+| GSUB vs Parser comparison | - | Page 26 (new) |
+| Testing & QA page | - | Page 29 (new) |
+| Real corpus examples | - | Page 30 (new) |
+| Raw data comparison | - | Page 10 (xlsx vs csv) |
+| Last page 2nd col | 5xRuby company intro | Quick Start (clone & test) |
+| Speaker notes | Japanese with furigana | Chinese |
+
+### Page Structure (33 pages)
+
+#### Part 1: Opening (Pages 1-3) ~1 min
+| Page | Title | Class |
+|------|-------|-------|
+| 1 | 像寫程式一樣解析台語 - Ruby 白話字羅馬字三階段解析 | `lead scale-95` |
+| 2 | 自我介紹 | `center scale-95` |
+| 3 | 議程 | `scale-90` |
+
+#### Part 2: Background (Pages 4-5) ~1 min
+| Page | Title | Class |
+|------|-------|-------|
+| 4 | 這個案子為什麼沒人投標？ | `center highlight` |
+| 5 | 台羅（POJ）是什麼？ (transition) | `lead` |
+
+#### Part 3: POJ Introduction (Pages 6-10) ~2.5 min
+| Page | Title | Class |
+|------|-------|-------|
+| 6 | 台羅（台灣閩南語羅馬字）是什麼？ | `scale-85` |
+| 7 | 漢字與音標的對應關係 | `scale-80` |
+| 8 | 實際的分詞對齊處理範例 | `scale-80` |
+| 9 | 原始資料與拆好的資料對比 | `scale-75` |
+| 10 | 分詞對齊實作 (transition) | `lead` |
+
+#### Part 4: Implementation - GSUB (Pages 11-17) ~3.5 min
+| Page | Title | Class |
+|------|-------|-------|
+| 11 | 實作全體流程：3 個 Phase | `center` |
+| 12 | Phase 1: 正規化 (WASH) | `scale-65` |
+| 13 | Phase 2-1: splitted_kanji | `scale-80` |
+| 14 | Phase 2-2: splitted_roman | `scale-85` |
+| 15 | Phase 3: 對齊與驗證 | `scale-75` |
+| 16 | Edge Cases 深入分析 | `scale-75` |
+| 17 | GSUB 模式的問題 | `scale-85` |
+
+#### Part 5: From GSUB to Parser (Pages 18-26) ~5 min
+| Page | Title | Class |
+|------|-------|-------|
+| 18 | 金子さん的演講啟發 | `scale-90` |
+| 19 | Conference Driven Development | `center` |
+| 20 | Parslet gem 介紹 | `scale-85` |
+| 21 | Parslet DSL 基礎語法 | `scale-75` |
+| 22 | Regexp → Parslet 轉換：標點符號處理 | `scale-60` |
+| 23 | Regexp → Parslet 轉換：連字符與音節對應 | `scale-65` |
+| 24 | 實際的 RomanParserPure：8 種 Token 類型 | `scale-75` |
+| 25 | GSUB vs Parser 比較分析 | `scale-80` |
+
+#### Part 6: Insights & Results (Pages 26-31) ~2.5 min
+| Page | Title | Class |
+|------|-------|-------|
+| 26 | 與 Ruby Parser 的比較 | `scale-80` |
+| 27 | 漢字處理依賴 POJ Parser | `scale-80` |
+| 28 | 測試與品質保證 | `scale-80` |
+| 29 | 更多真實案例展示 | `scale-75` |
+| 30 | 台語語料庫系統 | `scale-80` |
+
+#### Part 7: Conclusion (Pages 31-33) ~0.5 min
+| Page | Title | Class |
+|------|-------|-------|
+| 31 | 結論 | `center highlight` |
+| 32 | 謝謝！ | `scale-95` |
+
+### New Pages (not in slide-ja.md)
+
+1. **Page 9: 原始資料與拆好的資料對比** - Shows actual xlsx source data (107,294 rows) vs processed csv output side-by-side
+2. **Page 16: Edge Cases 深入分析** - 4 categories: number handling, POJ-in-kanji, punctuation sequences, prefix hyphens
+3. **Page 17: GSUB 模式的問題** - 65+ patterns maintenance difficulty, order-dependency bugs
+4. **Page 24: 實際的 RomanParserPure：8 種 Token 類型** - Compact token rule code + table of 8 types
+5. **Page 25: GSUB vs Parser 比較分析** - Side-by-side comparison table (maintainability, readability, performance, extensibility, testing, error handling)
+6. **Page 28: 測試與品質保證** - test_parser.rb output, balance validation triple check
+7. **Page 29: 更多真實案例展示** - Mixed punctuation, double-hyphen, passport number examples
+
+### Reused Assets from slide-ja.md
+- All images from `images/` directory
+- `rwc2025-setarr.drawio.svg` (flowchart)
+- `2024_AVATAR_RYUDOAWARU.jpg` (avatar)
+- `naer-homepage.png` (system screenshot)
+- `rubyconftw2025-kaneko.jpg` (conference photo)
+- `github-qr-code.jpg`, `qrcode-slide.jpg` (QR codes)
+- `search_corpus_in_system.gif`, `textbook_search.webm`, `grammar-search.webm` (demos)
+
+### Preview
+```bash
+npx @marp-team/marp-cli@latest -s ./
+# Open http://localhost:8080/rubyjam.md
+```
 
 ## Project Goals
 
@@ -690,5 +808,5 @@ For complete technical details, implementation strategies, and test results, see
 
 ---
 
-**Last Updated:** 2025-10-20
+**Last Updated:** 2026-02-20
 **Maintainer:** 5xRuby Development Team

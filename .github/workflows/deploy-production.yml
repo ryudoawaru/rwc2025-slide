@@ -45,6 +45,8 @@ jobs:
 
           # Remove Speaker Notes from Markdown before generating HTML
           perl -0777 -pe 's/<!--\s*\nSpeaker Note:.*?-->\s*\n//gs' slide-ja.md > output/slide-ja-no-notes.md
+          perl -0777 -pe 's/<!--\s*\nSpeaker Note:.*?-->\s*\n//gs' rubyjam.md > output/rubyjam-no-notes.md
+          perl -0777 -pe 's/<!--\s*\nSpeaker Note:.*?-->\s*\n//gs' rubyjam-en.md > output/rubyjam-en-no-notes.md
 
           # Generate Japanese version (default/main) from cleaned Markdown
           npx @marp-team/marp-cli output/slide-ja-no-notes.md \
@@ -60,8 +62,22 @@ jobs:
             --allow-local-files \
             -o output/en.html
 
-          # Remove temporary Markdown file
-          rm output/slide-ja-no-notes.md
+          # Generate RubyJam Chinese version from cleaned Markdown
+          npx @marp-team/marp-cli output/rubyjam-no-notes.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o output/rubyjam.html
+
+          # Generate RubyJam English version from cleaned Markdown
+          npx @marp-team/marp-cli output/rubyjam-en-no-notes.md \
+            --theme 5xruby.css \
+            --html \
+            --allow-local-files \
+            -o output/rubyjam-en.html
+
+          # Remove temporary Markdown files
+          rm output/slide-ja-no-notes.md output/rubyjam-no-notes.md output/rubyjam-en-no-notes.md
 
           # Copy assets to output directory
           if [ -d "images" ]; then
@@ -76,12 +92,22 @@ jobs:
           cat > output/README.md << 'EOF'
           # RubyWorld Conference 2025 - Slides
 
-          ## Available Languages
+          ## RubyWorld Conference 2025
 
           - [日本語版 (Japanese)](index.html) - Main presentation
           - [English Version](en.html) - English presentation
+
+          ## RubyJam 2025
+
+          - [中文版 (Chinese)](rubyjam.html) - RubyJam presentation
+          - [English Version](rubyjam-en.html) - RubyJam English presentation
+
+          ## Source
+
           - [Markdown Source (Japanese)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-ja.md)
           - [Markdown Source (English)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/slide-en.md)
+          - [Markdown Source (RubyJam Chinese)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/rubyjam.md)
+          - [Markdown Source (RubyJam English)](https://github.com/ryudoawaru/rwc2025-slide/blob/main/rubyjam-en.md)
 
           ## About
 
